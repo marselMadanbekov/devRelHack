@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/static/vendors/feather/feather.css">
+    <link rel="stylesheet" href="/static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/vendors/mdi/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="/static/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/static/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/static/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/static/images/favicon.png"/>
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="/main">
+                <img src="/static/images/logo.png"
+                     class="mr-2"
+                     alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="/main"><img
+                    src="/static/images/logo-mini.png"
+                    alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item">
+                    <a class="nav-link count-indicator" id="voiceOn">
+                        <i class="mdi mdi-volume-high icon-md mx-0"></i>
+                    </a>
+                    <a class="nav-link count-indicator" hidden id="voiceOff">
+                        <i class="mdi mdi-volume-off icon-md mx-0"></i>
+                    </a>
+                </li>
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <img src="/static/images/faces/profile.png" alt="profile"/>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                         aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="/main/profile">
+                            <i class="ti-user text-primary"></i>
+                            Профиль
+                        </a>
+                        <a class="dropdown-item" href="/logout">
+                            <i class="ti-power-off text-primary"></i>
+                            Выйти
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="icon-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row w-auto">
+                        <div class="col-md-7">
+                            Скорость
+                        </div>
+                        <div class="col-sm-5">
+                            <input class="form-control-sm form-control h-100" value="1" id="speed" type="number"
+                                   min="0.4"
+                                   step="0.2">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-auto">
+                        <div class="col-md-7">
+                            Разрядность
+                        </div>
+                        <div class="col-sm-5">
+                            <input class="form-control-sm form-control h-100" value="1" id="digitsCount" type="number"
+                                   min="1"
+                                   step="1">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-auto">
+                        <div class="col-md-7">Переменные</div>
+                        <div class="col-sm-5">
+                            <input class="form-control-sm form-control h-100" value="3" id="numbersCount" type="number"
+                                   min="3"
+                                   step="1">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="badge badge-primary btn-sm dropdown-toggle" type="button" data-toggle="collapse"
+                               data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Тема
+                            </p>
+                        </div>
+                        <div class="col-8 d-flex align-items-center">
+                            <p id="current-topic">Помощь брата +1</p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div>
+                                        <label>ПСВ</label>
+                                        <select class="form-control h-100" id="PSV-select">
+                                            <option value="0">Не выбрано</option>
+                                            <option value="PSV" data-rus-value="Простое С,В">ПСВ</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class="mt-2">
+                                    <div>
+                                        <label>Помощь брата</label>
+                                        <select class="form-control h-100" id="PB-select">
+                                            <option value="0">Не выбрано</option>
+                                            <option value="PB+1" data-rus-value="Помощь брата +1">+1</option>
+                                            <option value="PB-1" data-rus-value="Помощь брата -1">-1</option>
+                                            <option value="PB+2" data-rus-value="Помощь брата +2">+2</option>
+                                            <option value="PB-2" data-rus-value="Помощь брата -2">-2</option>
+                                            <option value="PB+3" data-rus-value="Помощь брата +3">+3</option>
+                                            <option value="PB-3" data-rus-value="Помощь брата -3">-3</option>
+                                            <option value="PB+4" data-rus-value="Помощь брата +4">+4</option>
+                                            <option value="PB-4" data-rus-value="Помощь брата -4">-4</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class="mt-2">
+                                    <div>
+                                        <label>Помощь друга</label>
+                                        <select class="form-control h-100" id="PD-select">
+                                            <option value="0">Не выбрано</option>
+                                            <option value="PD+1" data-rus-value="Помощь друга +1">+1</option>
+                                            <option value="PD-1" data-rus-value="Помощь друга -1">-1</option>
+                                            <option value="PD+2" data-rus-value="Помощь друга +2">+2</option>
+                                            <option value="PD-2" data-rus-value="Помощь друга -2">-2</option>
+                                            <option value="PD+3" data-rus-value="Помощь друга +3">+3</option>
+                                            <option value="PD-3" data-rus-value="Помощь друга -3">-3</option>
+                                            <option value="PD+4" data-rus-value="Помощь друга +4">+4</option>
+                                            <option value="PD-4" data-rus-value="Помощь друга -4">-4</option>
+                                            <option value="PD+5" data-rus-value="Помощь друга +5">+5</option>
+                                            <option value="PD-5" data-rus-value="Помощь друга -5">-5</option>
+                                            <option value="PD+6" data-rus-value="Помощь друга +6">+6</option>
+                                            <option value="PD-6" data-rus-value="Помощь друга -6">-6</option>
+                                            <option value="PD+7" data-rus-value="Помощь друга +7">+7</option>
+                                            <option value="PD-7" data-rus-value="Помощь друга -7">-7</option>
+                                            <option value="PD+8" data-rus-value="Помощь друга +8">+8</option>
+                                            <option value="PD-8" data-rus-value="Помощь друга -8">-8</option>
+                                            <option value="PD+9" data-rus-value="Помощь друга +9">+9</option>
+                                            <option value="PD-9" data-rus-value="Помощь друга -9">-9</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row w-auto">
+                        <div class="col-md-12">
+                            <label for="pupilsCount">Количество учеников</label>
+                            <select class="form-control form-control-sm" id="pupilsCount">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrap trainer-1-page-background">
+                <div class="row h-90">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <p class="badge badge-danger" id="incorrect">0</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="js-example-basic-single w-100" id="pupilSelect">
+                                            <option value="0">Не выбран</option>
+                                            <option th:value="${pupil.id}" th:each="pupil : ${pupils}" th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}">Alabama</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="badge badge-success" id="correct">0</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                                    <h1 class="current-number" id="currentNumber">Приготовьтесь!</h1>
+                                    <div class="form-group" id="answerDiv" hidden>
+                                        <label for="answerInput">Введите ответ</label>
+                                        <input class="form-control form-control-lg" type="number" id="answerInput">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-flex justify-content-center col-lg-12">
+                        <button type="button" hidden id="breakButton" class="btn btn-danger btn-icon-text">
+                            <i class="ti-close btn-icon-prepend"></i>
+                            Прервать
+                        </button>
+                        <button type="button" id="startButton" class="btn btn-success btn-icon-text">
+                            <i class="ti-control-play btn-icon-prepend"></i>
+                            Начать
+                        </button>
+                        <button type="button" hidden id="saveButton" class="btn btn-primary btn-icon-text">
+                            <i class="ti-export btn-icon-prepend"></i>
+                            Сохранить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<!-- plugins:js -->
+<script src="/static/vendors/js/vendor.bundle.base.js"></script>
+
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/static/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/static/js/dataTables.select.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/static/js/off-canvas.js"></script>
+<script src="/static/js/hoverable-collapse.js"></script>
+<script src="/static/vendors/select2/select2.min.js"></script>
+<script src="/static/custom-js/trainer/teachers-trainer-1.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="/static/js/select2.js"></script>
+
+</body>
+
+</html>
