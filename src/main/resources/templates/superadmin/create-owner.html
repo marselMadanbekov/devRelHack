@@ -132,7 +132,7 @@
                                         <label for="owner">Владельцы</label>
                                         <select class="form-control" name="ownerId" id="owner">
                                             <option th:each="owner : ${owners}" th:value="${owner.id}"
-                                                    th:text="${owner.userData.firstname + ' ' + owner.userData.lastname}"></option>
+                                                    th:text="${owner.employee.firstname + ' ' + owner.employee.lastname}"></option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-center mt-3">

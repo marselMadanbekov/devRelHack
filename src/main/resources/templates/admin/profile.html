@@ -126,7 +126,7 @@
                     <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
                         <div>
                             <h3 class="font-weight-bold mt-1"
-                                th:text="'Администратор: ' + ${admin.userData.firstname} + ' ' + ${admin.userData.lastname}"></h3>
+                                th:text="'Администратор: ' + ${admin.employee.firstname} + ' ' + ${admin.employee.lastname}"></h3>
                         </div>
                     </div>
                 </div>
@@ -141,30 +141,30 @@
                                         <tbody>
                                         <tr>
                                             <td class="font-weight-bold">Имя Фамилия</td>
-                                            <td th:text="${admin.userData.firstname} + ' ' + ${admin.userData.lastname}"></td>
+                                            <td th:text="${admin.employee.firstname} + ' ' + ${admin.employee.lastname}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">email</td>
-                                            <td th:text="${admin.userData.email}"></td>
+                                            <td th:text="${admin.employee.email}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Номер</td>
-                                            <td th:text="${admin.userData.phoneNumber}"></td>
+                                            <td th:text="${admin.employee.phoneNumber}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">День рождения</td>
-                                            <td th:text="${admin.userData.dateOfBirth}"></td>
+                                            <td th:text="${admin.employee.dateOfBirth}"></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <p class="badge"
-                                                   th:classappend="${admin.userData.active} ? 'badge-success' : 'badge-secondary'"
-                                                   th:text="${admin.userData.active} ? 'Активен' : 'Не активен'"></p>
+                                                   th:classappend="${admin.employee.active} ? 'badge-success' : 'badge-secondary'"
+                                                   th:text="${admin.employee.active} ? 'Активен' : 'Не активен'"></p>
                                             </td>
                                             <td>
                                                 <button id="activate-deactivate" class="badge"
-                                                        th:classappend="${admin.userData.active} ? 'badge-secondary' : 'badge-success'"
-                                                        th:text="${admin.userData.active} ? 'Деактивировать' : 'Активировать'"></button>
+                                                        th:classappend="${admin.employee.active} ? 'badge-secondary' : 'badge-success'"
+                                                        th:text="${admin.employee.active} ? 'Деактивировать' : 'Активировать'"></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -184,7 +184,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="forms-sample" id="update-user-data-form">
-                                    <input hidden th:value="${admin.userData.id}" id="userdataId" name="userdataId">
+                                    <input hidden th:value="${admin.employee.id}" id="userdataId" name="userdataId">
                                     <div class="form-group">
                                         <label for="firstname">Имя</label>
                                         <input type="text" class="form-control" name="firstname" id="firstname"

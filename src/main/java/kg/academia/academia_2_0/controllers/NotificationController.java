@@ -1,7 +1,7 @@
 package kg.academia.academia_2_0.controllers;
 
 import kg.academia.academia_2_0.model.entities.Notification;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.services.notification.NotificationService;
 import kg.academia.academia_2_0.services.notification.NotificationStorage;
 import kg.academia.academia_2_0.services.security.ContextService;
@@ -35,16 +35,16 @@ public class NotificationController {
 
     @GetMapping
     public String notifications(Model model){
-        UserData userData = contextService.getCurrentUsersData();
-        List<Notification> notifications = notificationStorage.getNonViewedNotificationsByUserData(userData);
+        Employee employee = contextService.getCurrentUsersData();
+        List<Notification> notifications = notificationStorage.getNonViewedNotificationsByUserData(employee);
         model.addAttribute("notifications", notifications);
-        return switch (userData.getRole()){
+        return switch (employee.getRole()){
             case ROLE_SUPER_ADMIN -> "superadmin/notifications";
             case ROLE_BRANCH_OWNER -> "owner/notifications";
             case ROLE_ADMIN -> "admin/notifications";
             case ROLE_TEACHER -> "teacher/notifications";
             case ROLE_PUPIL -> "pupil/notifications";
-            default -> throw new IllegalStateException("Unexpected value: " + userData.getRole());
+            default -> throw new IllegalStateException("Unexpected value: " + employee.getRole());
         };
     }
 

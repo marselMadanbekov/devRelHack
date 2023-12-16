@@ -1,7 +1,5 @@
 package kg.academia.academia_2_0.controllers.teacher;
 
-import kg.academia.academia_2_0.model.entities.Group;
-import kg.academia.academia_2_0.model.entities.users.Teacher;
 import kg.academia.academia_2_0.services.group.GroupService;
 import kg.academia.academia_2_0.services.security.ContextService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package kg.academia.academia_2_0.controllers.superAdmin;
 
-import kg.academia.academia_2_0.model.creations.UserCreate;
-import kg.academia.academia_2_0.model.entities.users.Owner;
+import kg.academia.academia_2_0.model.creations.EmployeeCreate;
 import kg.academia.academia_2_0.services.user.UserService;
 import kg.academia.academia_2_0.services.user.UserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +35,11 @@ public class OwnerController {
     }
 
     @PostMapping("/create-owner")
-    public ResponseEntity<Map<String,String>> createOwnerRequest(@ModelAttribute UserCreate userCreate){
+    public ResponseEntity<Map<String,String>> createOwnerRequest(@ModelAttribute EmployeeCreate employeeCreate){
         Map<String,String> response = new HashMap<>();
         try{
-            userService.createOwner(userCreate);
-            System.out.println(userCreate.toString());
+            userService.createOwner(employeeCreate);
+            System.out.println(employeeCreate.toString());
             response.put("message", "Владелец успешно создан");
             return ResponseEntity.ok(response);
         }catch (Exception e){

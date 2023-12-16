@@ -155,7 +155,7 @@
                                         <label for="pupils">Ученики</label>
                                         <select class="js-example-basic-multiple w-100" multiple="multiple" name="pupils" id="pupils">
                                             <option th:each="pupil : ${pupils}" th:value="${pupil.id}"
-                                                    th:text="${pupil.userData.firstname + ' ' + pupil.userData.lastname}"></option>
+                                                    th:text="${pupil.employee.firstname + ' ' + pupil.employee.lastname}"></option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-center mt-3">

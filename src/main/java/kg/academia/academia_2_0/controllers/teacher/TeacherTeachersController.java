@@ -1,8 +1,5 @@
 package kg.academia.academia_2_0.controllers.teacher;
 
-import kg.academia.academia_2_0.model.entities.Group;
-import kg.academia.academia_2_0.model.entities.users.Admin;
-import kg.academia.academia_2_0.model.entities.users.Teacher;
 import kg.academia.academia_2_0.services.group.GroupStorage;
 import kg.academia.academia_2_0.services.security.ContextService;
 import kg.academia.academia_2_0.services.user.UserStorage;

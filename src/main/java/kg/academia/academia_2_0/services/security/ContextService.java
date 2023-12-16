@@ -20,32 +20,9 @@ public class ContextService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
-    public UserData getCurrentUsersData(){
+    public Employee getCurrentEmployee(){
         return userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
     }
 
-    public Owner getCurrentOwner() {
-        UserData userData = userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
-        return userStorage.getOwnerByUserData(userData);
-    }
 
-    public Admin getCurrentAdmin() {
-        UserData userData = userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
-        return userStorage.getAdminByUserData(userData);
-    }
-
-    public Teacher getCurrentTeacher() {
-        UserData userData = userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
-        return userStorage.getTeacherByUserData(userData);
-    }
-
-    public Pupil getCurrentPupil() {
-        UserData userData = userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
-        return userStorage.getPupilByUserData(userData);
-    }
-
-    public SuperAdmin getCurrentSuperAdmin() {
-        UserData userData = userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
-        return userStorage.getSuperAdminByUserData(userData);
-    }
 }

@@ -1,7 +1,7 @@
 package kg.academia.academia_2_0.services.notification;
 
 import kg.academia.academia_2_0.model.entities.Notification;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class NotificationStorageImpl implements NotificationStorage{
     }
 
     @Override
-    public List<Notification> getNonViewedNotificationsByUserData(UserData userData) {
-        return notificationRepository.findByTargetUserAndViewed(userData,false);
+    public List<Notification> getNonViewedNotificationsByUserData(Employee employee) {
+        return notificationRepository.findByTargetUserAndViewed(employee,false);
     }
 }

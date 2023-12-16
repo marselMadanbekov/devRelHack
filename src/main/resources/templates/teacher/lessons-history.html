@@ -137,13 +137,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="lesson : ${lessons}">
+                                        <tr th:each="event : ${events}">
                                             <td>
-                                                <a th:text="${lesson.date}"
-                                                   th:href="'/teacher/lessons/lesson-details?lessonId=' + ${lesson.id}">
+                                                <a th:text="${event.date}"
+                                                   th:href="'/teacher/events/event-details?lessonId=' + ${event.id}">
                                                 </a>
                                             </td>
-                                            <td th:text="${lesson.teacher.userData.firstname} + ' ' + ${lesson.teacher.userData.lastname}"></td>
+                                            <td th:text="${event.teacher.employee.firstname} + ' ' + ${event.teacher.employee.lastname}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -152,28 +152,28 @@
                             <div class="d-flex justify-content-center">
                                 <nav aria-label="...">
                                     <ul class="pagination">
-                                        <li th:if="${lessons.number > 0}" class="page-item">
+                                        <li th:if="${events.number > 0}" class="page-item">
                                             <a class="page-link"
-                                               th:href="'/teacher/lessons/lessons-history?groupId=' + ${group.id} + '&page=0'"><<</a>
+                                               th:href="'/teacher/events/events-history?groupId=' + ${group.id} + '&page=0'"><<</a>
                                         </li>
-                                        <li th:if="${lessons.number > 0}" class="page-item">
-                                            <a th:text="${lessons.number}" class="page-link"
-                                               th:href="'/teacher/lessons/lessons-history?groupId=' + ${group.id} + '&page=' + ${lessons.number - 1}"></a>
+                                        <li th:if="${events.number > 0}" class="page-item">
+                                            <a th:text="${events.number}" class="page-link"
+                                               th:href="'/teacher/events/events-history?groupId=' + ${group.id} + '&page=' + ${events.number - 1}"></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#"
-                                                                        th:text="${lessons.number + 1}"></a>
+                                                                        th:text="${events.number + 1}"></a>
                                         </li>
-                                        <li th:if="${lessons.number + 1 < lessons.totalPages}" class="page-item">
-                                            <a href="#" class="page-link" th:text="${lessons.number + 2}"
-                                               th:href="'/teacher/lessons/lessons-history?groupId=' + ${group.id} + '&page=' + ${lessons.number + 1}"></a>
+                                        <li th:if="${events.number + 1 < events.totalPages}" class="page-item">
+                                            <a href="#" class="page-link" th:text="${events.number + 2}"
+                                               th:href="'/teacher/events/events-history?groupId=' + ${group.id} + '&page=' + ${events.number + 1}"></a>
                                         </li>
-                                        <li th:if="${lessons.number + 2 < lessons.totalPages}" class="page-item">
-                                            <a class="page-link" href="#" th:text="${lessons.number + 3}"
-                                               th:href="'/teacher/lessons/lessons-history?groupId=' + ${group.id} + '&page=' + ${lessons.number + 2}"></a>
+                                        <li th:if="${events.number + 2 < events.totalPages}" class="page-item">
+                                            <a class="page-link" href="#" th:text="${events.number + 3}"
+                                               th:href="'/teacher/events/events-history?groupId=' + ${group.id} + '&page=' + ${events.number + 2}"></a>
                                         </li>
-                                        <li th:if="${lessons.number + 1 < lessons.totalPages}" class="page-item">
+                                        <li th:if="${events.number + 1 < events.totalPages}" class="page-item">
                                             <a class="page-link"
-                                               th:href="'/teacher/lessons/lessons-history?groupId=' + ${group.id} + '&page=' + ${lessons.totalPages - 1}">>></a>
+                                               th:href="'/teacher/events/events-history?groupId=' + ${group.id} + '&page=' + ${events.totalPages - 1}">>></a>
                                         </li>
                                     </ul>
                                 </nav>

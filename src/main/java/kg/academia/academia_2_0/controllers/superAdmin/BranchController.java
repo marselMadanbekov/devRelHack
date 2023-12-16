@@ -1,11 +1,5 @@
 package kg.academia.academia_2_0.controllers.superAdmin;
 
-import kg.academia.academia_2_0.model.creations.BranchCreate;
-import kg.academia.academia_2_0.model.entities.Branch;
-import kg.academia.academia_2_0.model.entities.Group;
-import kg.academia.academia_2_0.model.entities.Subject;
-import kg.academia.academia_2_0.model.entities.users.Admin;
-import kg.academia.academia_2_0.model.entities.users.Owner;
 import kg.academia.academia_2_0.services.branch.BranchService;
 import kg.academia.academia_2_0.services.branch.BranchStorage;
 import kg.academia.academia_2_0.services.group.GroupStorage;

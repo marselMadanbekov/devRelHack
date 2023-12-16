@@ -1,10 +1,6 @@
 package kg.academia.academia_2_0.controllers.teacher;
 
-import kg.academia.academia_2_0.model.creations.ExerciseCreate;
-import kg.academia.academia_2_0.model.creations.HomeWorkCreate;
-import kg.academia.academia_2_0.model.entities.Group;
 import kg.academia.academia_2_0.model.entities.homeWork.MentalHomeWork;
-import kg.academia.academia_2_0.model.entities.users.Pupil;
 import kg.academia.academia_2_0.services.group.GroupStorage;
 import kg.academia.academia_2_0.services.homework.HomeWorkService;
 import org.springframework.beans.factory.annotation.Autowired;

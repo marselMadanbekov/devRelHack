@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.controllers.general.ownerAdmin;
 
-import kg.academia.academia_2_0.model.creations.SubjectCreate;
 import kg.academia.academia_2_0.services.subject.SubjectService;
 import kg.academia.academia_2_0.services.subject.SubjectStorage;
 import org.springframework.beans.factory.annotation.Autowired;

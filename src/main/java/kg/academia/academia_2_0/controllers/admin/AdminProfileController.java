@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.controllers.admin;
 
-import kg.academia.academia_2_0.model.entities.users.Admin;
 import kg.academia.academia_2_0.services.security.ContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

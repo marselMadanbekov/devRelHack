@@ -170,7 +170,7 @@
                                             <td class="font-weight-bold">Владелец</td>
                                             <td>
                                                 <a th:if="${owner != null}"
-                                                   th:text="${owner.userData.firstname} + ' ' + ${owner.userData.lastname}">
+                                                   th:text="${owner.employee.firstname} + ' ' + ${owner.employee.lastname}">
                                                 </a>
                                                 <p class="badge badge-danger" th:if="${owner == null}">Не назначен</p>
                                             </td>
@@ -179,7 +179,7 @@
                                             <td class="font-weight-bold">Администратор</td>
                                             <td>
                                                 <a th:if="${admin != null}"
-                                                   th:text="${admin.userData.firstname} + ' ' + ${admin.userData.lastname}">
+                                                   th:text="${admin.employee.firstname} + ' ' + ${admin.employee.lastname}">
                                                 </a>
                                                 <p class="badge badge-danger" th:if="${admin == null}">Не назначен</p>
                                             </td>

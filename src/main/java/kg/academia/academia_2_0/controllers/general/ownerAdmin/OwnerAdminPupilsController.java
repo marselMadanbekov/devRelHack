@@ -1,6 +1,6 @@
 package kg.academia.academia_2_0.controllers.general.ownerAdmin;
 
-import kg.academia.academia_2_0.model.creations.UserCreate;
+import kg.academia.academia_2_0.model.creations.EmployeeCreate;
 import kg.academia.academia_2_0.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +24,10 @@ public class OwnerAdminPupilsController {
 
 
     @PostMapping("/create-pupil")
-    public ResponseEntity<Map<String,String>> createPupilReq(@ModelAttribute UserCreate userCreate){
+    public ResponseEntity<Map<String,String>> createPupilReq(@ModelAttribute EmployeeCreate employeeCreate){
         Map<String,String> response = new HashMap<>();
         try{
-            userService.createPupil(userCreate);
+            userService.createPupil(employeeCreate);
             response.put("message", "Ученик успешно создан");
             return ResponseEntity.ok(response);
         }catch (Exception e){

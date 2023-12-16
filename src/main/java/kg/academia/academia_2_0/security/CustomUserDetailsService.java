@@ -1,6 +1,6 @@
 package kg.academia.academia_2_0.security;
 
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.services.user.UserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,21 +17,21 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserData loadUserByUsername(String username) throws UsernameNotFoundException {
-        return build(userStorage.getUserDataByUsername(username));
+    public Employee loadUserByUsername(String username) throws UsernameNotFoundException {
+        return build(userStorage.getEmployeeByUsername(username));
     }
 
-    public UserData loadUserById(Long id) {
-        return build(userStorage.getUserDataById(id));
+    public Employee loadUserById(Long id) {
+        return build(userStorage.getEmployeeById(id));
     }
 
-    private UserData build(UserData userData) {
-        return UserData.builder()
-                .id(userData.getId())
-                .username(userData.getUsername())
-                .password(userData.getPassword())
-                .role(userData.getRole())
-                .active(userData.getActive())
+    private Employee build(Employee employee) {
+        return Employee.builder()
+                .id(employee.getId())
+                .username(employee.getUsername())
+                .password(employee.getPassword())
+                .role(employee.getRole())
+                .active(employee.getActive())
                 .build();
     }
 }

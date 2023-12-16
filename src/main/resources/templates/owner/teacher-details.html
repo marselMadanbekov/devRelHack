@@ -146,7 +146,7 @@
                         </div>
                         <div>
                             <h3 class="font-weight-bold mt-1"
-                                th:text="'Учитель: ' + ${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}"></h3>
+                                th:text="'Учитель: ' + ${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></h3>
                         </div>
                     </div>
                 </div>
@@ -161,30 +161,30 @@
                                         <tbody>
                                         <tr>
                                             <td class="font-weight-bold">Имя Фамилия</td>
-                                            <td th:text="${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}"></td>
+                                            <td th:text="${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">email</td>
-                                            <td th:text="${teacher.userData.email}"></td>
+                                            <td th:text="${teacher.employee.email}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Номер</td>
-                                            <td th:text="${teacher.userData.phoneNumber}"></td>
+                                            <td th:text="${teacher.employee.phoneNumber}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">День рождения</td>
-                                            <td th:text="${teacher.userData.dateOfBirth}"></td>
+                                            <td th:text="${teacher.employee.dateOfBirth}"></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <p class="badge"
-                                                   th:classappend="${teacher.userData.active} ? 'badge-success' : 'badge-secondary'"
-                                                   th:text="${teacher.userData.active} ? 'Активен' : 'Не активен'"></p>
+                                                   th:classappend="${teacher.employee.active} ? 'badge-success' : 'badge-secondary'"
+                                                   th:text="${teacher.employee.active} ? 'Активен' : 'Не активен'"></p>
                                             </td>
                                             <td>
                                                 <button id="activate-deactivate" class="badge"
-                                                        th:classappend="${teacher.userData.active} ? 'badge-secondary' : 'badge-success'"
-                                                        th:text="${teacher.userData.active} ? 'Деактивировать' : 'Активировать'"></button>
+                                                        th:classappend="${teacher.employee.active} ? 'badge-secondary' : 'badge-success'"
+                                                        th:text="${teacher.employee.active} ? 'Деактивировать' : 'Активировать'"></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -290,7 +290,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="forms-sample" id="update-user-data-form">
-                                    <input id="userdataId" name="userdataId" th:value="${teacher.userData.id}" hidden>
+                                    <input id="userdataId" name="userdataId" th:value="${teacher.employee.id}" hidden>
                                     <div class="form-group">
                                         <label for="firstname">Имя</label>
                                         <input type="text" class="form-control" name="firstname" id="firstname"

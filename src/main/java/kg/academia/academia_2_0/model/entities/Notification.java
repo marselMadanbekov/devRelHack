@@ -2,7 +2,7 @@ package kg.academia.academia_2_0.model.entities;
 
 
 import jakarta.persistence.*;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class Notification {
     private String title;
     private String message;
     @ManyToOne
-    private UserData targetUser;
+    private Employee targetUser;
     private Date createDate;
     private Boolean viewed;
     @PrePersist()

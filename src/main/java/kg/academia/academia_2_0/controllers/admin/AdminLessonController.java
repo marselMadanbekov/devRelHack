@@ -1,9 +1,8 @@
 package kg.academia.academia_2_0.controllers.admin;
 
-import kg.academia.academia_2_0.model.entities.Group;
-import kg.academia.academia_2_0.model.entities.Lesson;
+import kg.academia.academia_2_0.model.entities.Event;
 import kg.academia.academia_2_0.services.group.GroupStorage;
-import kg.academia.academia_2_0.services.lesson.LessonService;
+import kg.academia.academia_2_0.services.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/admin/lessons")
 public class AdminLessonController {
     private final GroupStorage groupStorage;
-    private final LessonService lessonService;
+    private final EventService eventService;
 
     @Autowired
-    public AdminLessonController(GroupStorage groupStorage, LessonService lessonService) {
+    public AdminLessonController(GroupStorage groupStorage, EventService eventService) {
         this.groupStorage = groupStorage;
-        this.lessonService = lessonService;
+        this.eventService = eventService;
     }
 
     @GetMapping("/lessons-history")
@@ -29,7 +28,7 @@ public class AdminLessonController {
                                  @RequestParam(defaultValue = "0") Integer page,
                                  Model model) {
         Group group = groupStorage.getGroupById(groupId);
-        Page<Lesson> lessons = lessonService.lessonsByGroupIdAndPage(groupId, page);
+        Page<Event> lessons = eventService.lessonsByGroupIdAndPage(groupId, page);
         model.addAttribute("group", group);
         model.addAttribute("lessons", lessons);
         return "admin/lessons-history";
@@ -38,8 +37,8 @@ public class AdminLessonController {
     @GetMapping("/lesson-details")
     public String lessonDetails(@RequestParam Long lessonId,
                                 Model model){
-        Lesson lesson = lessonService.findLessonById(lessonId);
-        model.addAttribute("lesson", lesson);
+        Event event = eventService.findLessonById(lessonId);
+        model.addAttribute("lesson", event);
         return "admin/lesson-details";
     }
 }

@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.controllers.general.ownerAdmin;
 
-import kg.academia.academia_2_0.model.creations.GroupCreate;
 import kg.academia.academia_2_0.services.group.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

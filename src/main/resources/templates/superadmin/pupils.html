@@ -151,14 +151,14 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="pupil : ${pupils}">
-                                            <td th:text="${pupil.userData.firstname}"></td>
-                                            <td th:text="${pupil.userData.lastname}"></td>
-                                            <td th:text="${pupil.userData.phoneNumber}"></td>
-                                            <td th:text="${pupil.userData.email}"></td>
+                                            <td th:text="${pupil.employee.firstname}"></td>
+                                            <td th:text="${pupil.employee.lastname}"></td>
+                                            <td th:text="${pupil.employee.phoneNumber}"></td>
+                                            <td th:text="${pupil.employee.email}"></td>
                                             <td th:text="${pupil.branch.town}"></td>
                                             <td>
-                                                <label th:if="${pupil.userData.active}" class="badge badge-success">Активен</label>
-                                                <label th:if="${!pupil.userData.active}" class="badge badge-secondary">Не активен</label>
+                                                <label th:if="${pupil.employee.active}" class="badge badge-success">Активен</label>
+                                                <label th:if="${!pupil.employee.active}" class="badge badge-secondary">Не активен</label>
                                             </td>
                                         </tr>
                                         </tbody>

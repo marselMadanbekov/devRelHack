@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.controllers;
 
-import kg.academia.academia_2_0.model.utilities.MarkDTO;
 import kg.academia.academia_2_0.services.mark.MarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

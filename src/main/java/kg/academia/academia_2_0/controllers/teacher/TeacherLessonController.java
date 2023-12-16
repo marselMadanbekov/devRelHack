@@ -1,11 +1,9 @@
 package kg.academia.academia_2_0.controllers.teacher;
 
-import kg.academia.academia_2_0.model.creations.LessonCreate;
-import kg.academia.academia_2_0.model.entities.Group;
-import kg.academia.academia_2_0.model.entities.Lesson;
-import kg.academia.academia_2_0.model.updations.AttendanceUpdate;
+import kg.academia.academia_2_0.model.creations.EventCreate;
+import kg.academia.academia_2_0.model.entities.Event;
 import kg.academia.academia_2_0.services.group.GroupStorage;
-import kg.academia.academia_2_0.services.lesson.LessonService;
+import kg.academia.academia_2_0.services.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -22,21 +20,21 @@ import java.util.Map;
 public class TeacherLessonController {
 
     private final GroupStorage groupStorage;
-    private final LessonService lessonService;
+    private final EventService eventService;
 
     @Autowired
-    public TeacherLessonController(GroupStorage groupStorage, LessonService lessonService) {
+    public TeacherLessonController(GroupStorage groupStorage, EventService eventService) {
         this.groupStorage = groupStorage;
-        this.lessonService = lessonService;
+        this.eventService = eventService;
     }
 
     @GetMapping("/group-lessons")
     public String attendance(@RequestParam Long groupId,
                              Model model) {
         Group group = groupStorage.getGroupById(groupId);
-        List<Lesson> lessons = lessonService.lastLessonsByGroupId(groupId);
+        List<Event> events = eventService.lastLessonsByGroupId(groupId);
         model.addAttribute("group", group);
-        model.addAttribute("lessons", lessons);
+        model.addAttribute("lessons", events);
         return "teacher/lessons";
     }
 
@@ -45,7 +43,7 @@ public class TeacherLessonController {
                                  @RequestParam(defaultValue = "0") Integer page,
                                  Model model) {
         Group group = groupStorage.getGroupById(groupId);
-        Page<Lesson> lessons = lessonService.lessonsByGroupIdAndPage(groupId, page);
+        Page<Event> lessons = eventService.lessonsByGroupIdAndPage(groupId, page);
         model.addAttribute("group", group);
         model.addAttribute("lessons", lessons);
         return "teacher/lessons-history";
@@ -53,16 +51,16 @@ public class TeacherLessonController {
     @GetMapping("/lesson-details")
     public String lessonDetails(@RequestParam Long lessonId,
                                 Model model){
-        Lesson lesson = lessonService.findLessonById(lessonId);
-        model.addAttribute("lesson", lesson);
+        Event event = eventService.findLessonById(lessonId);
+        model.addAttribute("lesson", event);
         return "teacher/lesson-details";
     }
 
     @GetMapping("/last-lessons")
     public String lastLesson(@RequestParam Long lessonId,
                              Model model) {
-        Lesson lesson = lessonService.findLessonById(lessonId);
-        model.addAttribute("lesson", lesson);
+        Event event = eventService.findLessonById(lessonId);
+        model.addAttribute("lesson", event);
         return "teacher/edit-lesson";
     }
 
@@ -75,12 +73,12 @@ public class TeacherLessonController {
     }
 
     @PostMapping("/submit-attendance")
-    public ResponseEntity<Map<String, String>> submitAttendance(@RequestBody LessonCreate lessonCreate) {
+    public ResponseEntity<Map<String, String>> submitAttendance(@RequestBody EventCreate eventCreate) {
         Map<String, String> response = new HashMap<>();
         try {
-            System.out.println(lessonCreate.getDate());
-            System.out.println(lessonCreate.getGroupId());
-            lessonService.createLesson(lessonCreate);
+            System.out.println(eventCreate.getDate());
+            System.out.println(eventCreate.getGroupId());
+            eventService.createEvent(eventCreate);
             response.put("message", "Урок успешно создан!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -93,7 +91,7 @@ public class TeacherLessonController {
     public ResponseEntity<Map<String, String>> editAttendance(@RequestBody AttendanceUpdate lessonCreate) {
         Map<String, String> response = new HashMap<>();
         try {
-            lessonService.editLesson(lessonCreate);
+            eventService.editLesson(lessonCreate);
             response.put("message", "Урок успешно сохранен!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {

@@ -165,7 +165,7 @@
                                         <select class="form-control" name="teacherId" id="teacher">
                                             <option value="0" selected>Не выбран</option>
                                             <option th:each="teacher: ${teachers}" th:value="${teacher.id}"
-                                                    th:text="${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}"></option>
+                                                    th:text="${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></option>
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-center mt-3">

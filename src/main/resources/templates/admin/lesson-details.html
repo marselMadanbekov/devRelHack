@@ -124,8 +124,8 @@
             <div class="content-wrapper">
                 <div class="row mb-3">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold" th:text="'Урок : ' + ${lesson.date}"></h3>
-                        <h5 class="font-weight-bold" th:text="'Группа : ' + ${lesson.group.name}"></h5>
+                        <h3 class="font-weight-bold" th:text="'Урок : ' + ${event.date}"></h3>
+                        <h5 class="font-weight-bold" th:text="'Группа : ' + ${event.group.name}"></h5>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -145,16 +145,16 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="pupil : ${lesson.attendance.keySet()}">
+                                        <tr th:each="pupil : ${event.attendance.keySet()}">
                                             <td>
-                                                <p class="badge badge-success" th:if="${lesson.attendance.get(pupil)}">
+                                                <p class="badge badge-success" th:if="${event.attendance.get(pupil)}">
                                                     Присутствовал
                                                 </p>
-                                                <p class="badge badge-danger" th:if="${!lesson.attendance.get(pupil)}">
+                                                <p class="badge badge-danger" th:if="${!event.attendance.get(pupil)}">
                                                     Отсутствовал
                                                 </p>
                                             </td>
-                                            <td th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}">
+                                            <td th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}">
                                             </td>
                                         </tr>
                                         </tbody>

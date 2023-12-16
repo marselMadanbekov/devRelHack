@@ -117,13 +117,13 @@
             <div class="content-wrapper">
                 <div class="row mb-3">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold" th:text="'Урок : ' + ${lesson.date}"></h3>
-                        <h5 class="font-weight-bold" th:text="'Группа : ' + ${lesson.group.name}"></h5>
+                        <h3 class="font-weight-bold" th:text="'Урок : ' + ${event.date}"></h3>
+                        <h5 class="font-weight-bold" th:text="'Группа : ' + ${event.group.name}"></h5>
                     </div>
                     <div class="col-12 col-xl-4">
                         <div class="justify-content-end d-flex">
                             <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                <input hidden th:value="${lesson.id}" id="lessonId">
+                                <input hidden th:value="${event.id}" id="lessonId">
                                 <button class="btn btn-sm btn-primary" type="submit" id="edit-attendance">
                                     Сохранить
                                 </button>
@@ -148,17 +148,17 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="pupil : ${lesson.attendance.keySet()}">
+                                        <tr th:each="pupil : ${event.attendance.keySet()}">
                                             <td>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
                                                         <input type="checkbox" class="form-check-input"
-                                                               th:checked="${lesson.attendance.get(pupil)}"
+                                                               th:checked="${event.attendance.get(pupil)}"
                                                                th:attr="pupilId=${pupil.id}">
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}">
+                                            <td th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}">
                                             </td>
                                         </tr>
                                         </tbody>

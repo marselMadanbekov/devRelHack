@@ -164,7 +164,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="pupil : ${group.pupils}" class="pupils" th:attr="pupilId=${pupil.id}">
-                                        <td data-label="Фио" th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}"></td>
+                                        <td data-label="Фио" th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}"></td>
                                         <td data-label="Тема" class="align-items-center d-flex">
                                             <div class="form-group d-flex align-items-center">
                                                 <input class="form-control form-control-sm mt-3 ml-3" type="text">

@@ -129,7 +129,7 @@
                     <div class="col-12 col-xl-4">
                         <div class="justify-content-end d-flex">
                             <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                <a class="btn btn-sm btn-primary" th:href="'/admin/lessons/lessons-history?groupId=' + ${group.id}" type="button">
+                                <a class="btn btn-sm btn-primary" th:href="'/admin/events/events-history?groupId=' + ${group.id}" type="button">
                                     История занятий
                                 </a>
                             </div>
@@ -149,7 +149,7 @@
                                             <td class="font-weight-bold">Учитель</td>
                                             <td>
                                                 <p th:if="${group.teacher != null}"
-                                                   th:text="${group.teacher.userData.firstname} + ' ' + ${group.teacher.userData.lastname}"></p>
+                                                   th:text="${group.teacher.employee.firstname} + ' ' + ${group.teacher.employee.lastname}"></p>
                                                 <p class="badge" th:if="${group.teacher == null}"
                                                    th:classappend="'badge-danger'">Не назначен</p>
                                             </td>
@@ -192,11 +192,11 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
-                                        <tr th:each="lesson : ${group.timetable.keySet()}">
-                                            <td class="font-weight-bold" th:text="${lesson.toString()}">Понедельник</td>
-                                            <td th:text="${group.timetable.get(lesson)}"></td>
+                                        <tr th:each="event : ${group.timetable.keySet()}">
+                                            <td class="font-weight-bold" th:text="${event.toString()}">Понедельник</td>
+                                            <td th:text="${group.timetable.get(event)}"></td>
                                             <td>
-                                                <button class="btn btn-sm btn-danger delete-lesson" th:attr="dayOfWeek=${lesson.ordinal()}">
+                                                <button class="btn btn-sm btn-danger delete-event" th:attr="dayOfWeek=${event.ordinal()}">
                                                     <i class="mdi mdi-delete"></i>
                                                 </button>
                                             </td>
@@ -206,7 +206,7 @@
                                 </div>
                                 <hr>
                                 <h5 class="card-title">Добавить урок</h5>
-                                <form id="add-lesson-to-timetable-form">
+                                <form id="add-event-to-timetable-form">
                                     <input name="groupId" th:value="${group.id}" hidden>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -271,13 +271,13 @@
                                         <tbody>
                                         <tr th:each="pupil : ${group.pupils}">
                                             <td>
-                                                <a th:text="${pupil.userData.firstname}"></a>
+                                                <a th:text="${pupil.employee.firstname}"></a>
                                             </td>
-                                            <td th:text="${pupil.userData.lastname}"></td>
-                                            <td th:text="${pupil.userData.phoneNumber}"></td>
+                                            <td th:text="${pupil.employee.lastname}"></td>
+                                            <td th:text="${pupil.employee.phoneNumber}"></td>
                                             <td>
-                                                <label th:if="${pupil.userData.active}" class="badge badge-success">Активен</label>
-                                                <label th:if="${!pupil.userData.active}" class="badge badge-danger">Не
+                                                <label th:if="${pupil.employee.active}" class="badge badge-success">Активен</label>
+                                                <label th:if="${!pupil.employee.active}" class="badge badge-danger">Не
                                                     Активен</label>
                                             </td>
                                             <td>
@@ -315,7 +315,7 @@
                                         <select class="form-control" name="teacherId" id="teacher">
                                             <option value="0" selected>Не выбрано</option>
                                             <option th:each="teacher : ${teachers}" th:value="${teacher.id}"
-                                                    th:text="${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}">
+                                                    th:text="${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}">
                                             </option>
                                         </select>
                                     </div>
@@ -376,8 +376,8 @@
 <script src="/static/js/dashboard.js"></script>
 <script src="/static/custom-js/admin/remove-pupil-from-group.js"></script>
 <script src="/static/custom-js/admin/update-group.js"></script>
-<script src="/static/custom-js/admin/add-lesson-to-timetable.js"></script>
-<script src="/static/custom-js/admin/delete-lesson-day.js"></script>
+<script src="/static/custom-js/admin/add-event-to-timetable.js"></script>
+<script src="/static/custom-js/admin/delete-event-day.js"></script>
 <script src="/static/custom-js/admin/activate-deactivate-group.js"></script>
 <script src="/static/custom-js/general/check-notifications.js"></script>
 

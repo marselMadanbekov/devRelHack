@@ -175,7 +175,7 @@
                                             <td th:text="${group.pupils.size()}"></td>
                                             <td>
                                                 <p th:if="${group.teacher != null}"
-                                                   th:text="${group.teacher.userData.firstname} + ' ' + ${group.teacher.userData.lastname}"></p>
+                                                   th:text="${group.teacher.employee.firstname} + ' ' + ${group.teacher.employee.lastname}"></p>
                                                 <p class="badge" th:if="${group.teacher == null}"
                                                    th:classappend="'badge-danger'">Не назначен</p>
                                             </td>

@@ -155,17 +155,17 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="user : ${tempUsers}">
-                                            <td th:text="${user.userData.firstname}">
+                                            <td th:text="${user.employee.firstname}">
                                                 <a
                                                    th:href="'/admin/temp-users/user-details?userId=' + ${user.id}">
                                                 </a>
                                             </td>
-                                            <td th:text="${user.userData.lastname}"></td>
-                                            <td th:text="${user.userData.phoneNumber}"></td>
-                                            <td th:text="${user.userData.email}"></td>
+                                            <td th:text="${user.employee.lastname}"></td>
+                                            <td th:text="${user.employee.phoneNumber}"></td>
+                                            <td th:text="${user.employee.email}"></td>
                                             <td>
-                                                <label class="badge badge-success" th:if="${user.userData.active}">Активен</label>
-                                                <label class="badge badge-secondary" th:if="${!user.userData.active}">Не активен</label>
+                                                <label class="badge badge-success" th:if="${user.employee.active}">Активен</label>
+                                                <label class="badge badge-secondary" th:if="${!user.employee.active}">Не активен</label>
                                             </td>
                                         </tr>
                                         </tbody>

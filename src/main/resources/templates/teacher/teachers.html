@@ -151,16 +151,16 @@
                                         <tbody>
                                         <tr th:each="teacher: ${teachers}">
                                             <td>
-                                                <a th:text="${teacher.userData.firstname}"
+                                                <a th:text="${teacher.employee.firstname}"
                                                    th:href="'/teacher/teachers/teacher-details?teacherId=' + ${teacher.id}">
                                                 </a>
                                             </td>
-                                            <td th:text="${teacher.userData.lastname}"></td>
-                                            <td th:text="${teacher.userData.phoneNumber}"></td>
-                                            <td th:text="${teacher.userData.email}"></td>
+                                            <td th:text="${teacher.employee.lastname}"></td>
+                                            <td th:text="${teacher.employee.phoneNumber}"></td>
+                                            <td th:text="${teacher.employee.email}"></td>
                                             <td>
-                                                <label class="badge badge-success" th:if="${teacher.userData.active}">Активен</label>
-                                                <label class="badge badge-secondary" th:if="${!teacher.userData.active}">Не активен</label>
+                                                <label class="badge badge-success" th:if="${teacher.employee.active}">Активен</label>
+                                                <label class="badge badge-secondary" th:if="${!teacher.employee.active}">Не активен</label>
                                             </td>
                                         </tr>
                                         </tbody>
