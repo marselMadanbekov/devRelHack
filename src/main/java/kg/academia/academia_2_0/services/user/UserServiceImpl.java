@@ -6,9 +6,9 @@ import kg.academia.academia_2_0.model.enums.Gender;
 import kg.academia.academia_2_0.model.enums.Level;
 import kg.academia.academia_2_0.model.enums.Role;
 import kg.academia.academia_2_0.model.updations.UserdataUpdate;
+import kg.academia.academia_2_0.services.email.EmailServiceImpl;
 import kg.academia.academia_2_0.services.notification.NotificationService;
 import kg.academia.academia_2_0.services.security.AccessGuardService;
-import org.h2.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.*;
@@ -26,13 +26,15 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserStorage userStorage;
+    private final EmailServiceImpl emailService;
     private final AccessGuardService accessGuardService;
     private final NotificationService notificationService;
 
     @Autowired
-    public UserServiceImpl(PasswordEncoder passwordEncoder, UserStorage userStorage, AccessGuardService accessGuardService, NotificationService notificationService) {
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserStorage userStorage, EmailServiceImpl emailService, AccessGuardService accessGuardService, NotificationService notificationService) {
         this.passwordEncoder = passwordEncoder;
         this.userStorage = userStorage;
+        this.emailService = emailService;
         this.accessGuardService = accessGuardService;
         this.notificationService = notificationService;
     }
@@ -130,11 +132,24 @@ public class UserServiceImpl implements UserService {
     public void sendDistributionsByUser(Long userId, String message, List<String> targetDistributions) {
         Employee employee = userStorage.getEmployeeById(userId);
 
+        for(String distribution : targetDistributions){
+            if(distribution.equalsIgnoreCase("EMAIL")){
+                sendEmailByUsername(message,employee.getSocialMedias().get("EMAIL"));
+            }else{
+                sendTelegramDistributionsByUser(employee,message);
+            }
+        }
+    }
 
+    private void sendEmailByUsername(String message, String email) {
+        emailService.sendSimpleMessage(email,message);
+    }
+
+    public void sendTelegramDistributionsByUser(Employee employee, String message) {
         Map<String, Object> request = new HashMap<>();
         request.put("text", message);
         Map<String, Integer> requestEntry = new HashMap<>();
-        requestEntry.put(employee.getSocialMedias().get("Telegram".toUpperCase()),1);
+        requestEntry.put(employee.getSocialMedias().get("TELEGRAM"),1);
 
         request.put("users", requestEntry);
 
@@ -168,7 +183,6 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
     }
-
     private Employee createUserData(EmployeeCreate employeeCreate) {
         return Employee.builder()
                 .active(true)
