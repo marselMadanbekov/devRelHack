@@ -1,7 +1,7 @@
 package kg.academia.academia_2_0.controllers.admin;
 
 
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.services.security.ContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class ChatController {
 
     @GetMapping("")
     public String tempUsers(Model model){
-        UserData userData = contextService.getCurrentUsersData();
+        Employee userData = contextService.getCurrentEmployee();
         model.addAttribute("userData", userData);
         return "chat/index";
     }
