@@ -114,7 +114,7 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <form id="lesson-create-form">
+                <form id="event-create-form">
                     <div class="row mb-3">
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                             <h3 class="font-weight-bold" th:text="'Группа : ' + ${group.name}"></h3>
@@ -122,7 +122,7 @@
                         <div class="col-12 col-xl-4">
                             <div class="justify-content-end d-flex">
                                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                    <button class="btn btn-sm btn-primary" type="submit" id="lesson-create-button">
+                                    <button class="btn btn-sm btn-primary" type="submit" id="event-create-button">
                                         Сохранить
                                     </button>
                                 </div>
@@ -165,7 +165,7 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}">
+                                                <td th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}">
                                                 </td>
                                             </tr>
                                             </tbody>

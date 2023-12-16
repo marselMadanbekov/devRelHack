@@ -1,6 +1,6 @@
 package kg.academia.academia_2_0.controllers.general.superAdminOwner;
 
-import kg.academia.academia_2_0.model.creations.UserCreate;
+import kg.academia.academia_2_0.model.creations.EmployeeCreate;
 import kg.academia.academia_2_0.model.utilities.ChartTuple;
 import kg.academia.academia_2_0.services.branch.BranchAnalyticsService;
 import kg.academia.academia_2_0.services.user.UserService;
@@ -26,11 +26,11 @@ public class SuperAdminOwnerController {
     }
 
     @PostMapping("/admins/create-admin")
-    public ResponseEntity<Map<String, String>> createOwnerRequest(@ModelAttribute UserCreate userCreate) {
+    public ResponseEntity<Map<String, String>> createOwnerRequest(@ModelAttribute EmployeeCreate employeeCreate) {
         Map<String, String> response = new HashMap<>();
         try {
-            userService.createAdmin(userCreate);
-            System.out.println(userCreate.toString());
+            userService.createAdmin(employeeCreate);
+            System.out.println(employeeCreate.toString());
             response.put("message", "Администратор успешно создан");
             return ResponseEntity.ok(response);
         } catch (Exception e) {

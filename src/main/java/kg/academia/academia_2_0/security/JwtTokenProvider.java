@@ -5,7 +5,7 @@ package kg.academia.academia_2_0.security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -21,7 +21,7 @@ public class JwtTokenProvider {
     public static final Logger LOG = LoggerFactory.getLogger(JwtTokenProvider.class);
 
     public String generateToken(Authentication authentication){
-        UserData user = (UserData) authentication.getPrincipal();
+        Employee user = (Employee) authentication.getPrincipal();
 
         Date now = new Date(System.currentTimeMillis());
 

@@ -1,11 +1,7 @@
 package kg.academia.academia_2_0.controllers;
 
-import kg.academia.academia_2_0.model.entities.users.Pupil;
-import kg.academia.academia_2_0.model.entities.users.Teacher;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.model.enums.Role;
-import kg.academia.academia_2_0.model.utilities.MentalTask;
-import kg.academia.academia_2_0.model.utilities.MultipleTrainerResults;
 import kg.academia.academia_2_0.services.mark.MarkService;
 import kg.academia.academia_2_0.services.security.ContextService;
 import kg.academia.academia_2_0.services.trainer.TrainerService;
@@ -38,9 +34,9 @@ public class TrainerController {
 
     @GetMapping("")
     public String trainer(Model model) {
-        UserData userData = contextService.getCurrentUsersData();
+        Employee employee = contextService.getCurrentUsersData();
         String targetPage = "";
-        switch (userData.getRole()) {
+        switch (employee.getRole()) {
             case ROLE_SUPER_ADMIN, ROLE_BRANCH_OWNER, ROLE_ADMIN, ROLE_PUPIL -> {
                 targetPage = "trainer/simple-trainer";
             }

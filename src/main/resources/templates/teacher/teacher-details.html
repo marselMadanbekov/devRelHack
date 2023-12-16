@@ -119,7 +119,7 @@
                     <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
                         <div>
                             <h3 class="font-weight-bold mt-1"
-                                th:text="'Учитель: ' + ${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}"></h3>
+                                th:text="'Учитель: ' + ${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></h3>
                         </div>
                     </div>
                 </div>
@@ -134,26 +134,26 @@
                                         <tbody>
                                         <tr>
                                             <td class="font-weight-bold">Имя Фамилия</td>
-                                            <td th:text="${teacher.userData.firstname} + ' ' + ${teacher.userData.lastname}"></td>
+                                            <td th:text="${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">email</td>
-                                            <td th:text="${teacher.userData.email}"></td>
+                                            <td th:text="${teacher.employee.email}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Номер</td>
-                                            <td th:text="${teacher.userData.phoneNumber}"></td>
+                                            <td th:text="${teacher.employee.phoneNumber}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">День рождения</td>
-                                            <td th:text="${teacher.userData.dateOfBirth}"></td>
+                                            <td th:text="${teacher.employee.dateOfBirth}"></td>
                                         </tr>
                                         <tr>
                                             <td>Статус</td>
                                             <td>
                                                 <p class="badge"
-                                                   th:classappend="${teacher.userData.active} ? 'badge-success' : 'badge-secondary'"
-                                                   th:text="${teacher.userData.active} ? 'Активен' : 'Не активен'"></p>
+                                                   th:classappend="${teacher.employee.active} ? 'badge-success' : 'badge-secondary'"
+                                                   th:text="${teacher.employee.active} ? 'Активен' : 'Не активен'"></p>
                                             </td>
                                         </tr>
                                         </tbody>

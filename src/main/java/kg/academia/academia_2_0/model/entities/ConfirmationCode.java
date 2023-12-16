@@ -1,7 +1,7 @@
 package kg.academia.academia_2_0.model.entities;
 
 import jakarta.persistence.*;
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -14,7 +14,7 @@ public class ConfirmationCode {
     private Long id;
     private String code;
     @OneToOne
-    private UserData userData;
+    private Employee employee;
     private LocalDateTime createDate;
     private LocalDateTime lastUpdate;
 

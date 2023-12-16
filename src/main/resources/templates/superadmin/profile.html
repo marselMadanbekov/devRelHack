@@ -91,7 +91,7 @@
                     <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
                         <div>
                             <h3 class="font-weight-bold mt-1"
-                                th:text="'Супер-админ: ' + ${superAdmin.userData.firstname} + ' ' + ${superAdmin.userData.lastname}"></h3>
+                                th:text="'Супер-админ: ' + ${superAdmin.employee.firstname} + ' ' + ${superAdmin.employee.lastname}"></h3>
                         </div>
                     </div>
                 </div>
@@ -106,30 +106,30 @@
                                         <tbody>
                                         <tr>
                                             <td class="font-weight-bold">Имя Фамилия</td>
-                                            <td th:text="${superAdmin.userData.firstname} + ' ' + ${superAdmin.userData.lastname}"></td>
+                                            <td th:text="${superAdmin.employee.firstname} + ' ' + ${superAdmin.employee.lastname}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">email</td>
-                                            <td th:text="${superAdmin.userData.email}"></td>
+                                            <td th:text="${superAdmin.employee.email}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Номер</td>
-                                            <td th:text="${superAdmin.userData.phoneNumber}"></td>
+                                            <td th:text="${superAdmin.employee.phoneNumber}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">День рождения</td>
-                                            <td th:text="${superAdmin.userData.dateOfBirth}"></td>
+                                            <td th:text="${superAdmin.employee.dateOfBirth}"></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <p class="badge"
-                                                   th:classappend="${superAdmin.userData.active} ? 'badge-success' : 'badge-secondary'"
-                                                   th:text="${superAdmin.userData.active} ? 'Активен' : 'Не активен'"></p>
+                                                   th:classappend="${superAdmin.employee.active} ? 'badge-success' : 'badge-secondary'"
+                                                   th:text="${superAdmin.employee.active} ? 'Активен' : 'Не активен'"></p>
                                             </td>
                                             <td>
                                                 <button id="activate-deactivate" class="badge"
-                                                        th:classappend="${superAdmin.userData.active} ? 'badge-secondary' : 'badge-success'"
-                                                        th:text="${superAdmin.userData.active} ? 'Деактивировать' : 'Активировать'"></button>
+                                                        th:classappend="${superAdmin.employee.active} ? 'badge-secondary' : 'badge-success'"
+                                                        th:text="${superAdmin.employee.active} ? 'Деактивировать' : 'Активировать'"></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -149,7 +149,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="forms-sample" id="update-user-data-form">
-                                    <input hidden th:value="${superAdmin.userData.id}" name="userdataId" id="userdataId">
+                                    <input hidden th:value="${superAdmin.employee.id}" name="userdataId" id="userdataId">
 
                                     <div class="form-group">
                                         <label for="firstname">Имя</label>

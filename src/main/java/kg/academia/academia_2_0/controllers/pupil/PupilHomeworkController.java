@@ -2,13 +2,9 @@ package kg.academia.academia_2_0.controllers.pupil;
 
 import kg.academia.academia_2_0.model.entities.homeWork.MentalExercise;
 import kg.academia.academia_2_0.model.entities.homeWork.MentalHomeWork;
-import kg.academia.academia_2_0.model.enums.ExerciseType;
-import kg.academia.academia_2_0.model.enums.TrainerTask;
-import kg.academia.academia_2_0.model.utilities.MentalTask;
 import kg.academia.academia_2_0.services.homework.HomeWorkService;
 import kg.academia.academia_2_0.services.trainer.TrainerService;
 import kg.academia.academia_2_0.services.trainer.rostAbacus.TaskGenerator;
-import org.hibernate.Internal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

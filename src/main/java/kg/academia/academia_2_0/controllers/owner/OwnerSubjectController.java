@@ -1,8 +1,5 @@
 package kg.academia.academia_2_0.controllers.owner;
 
-import kg.academia.academia_2_0.model.entities.Branch;
-import kg.academia.academia_2_0.model.entities.Subject;
-import kg.academia.academia_2_0.model.entities.users.Teacher;
 import kg.academia.academia_2_0.services.branch.BranchStorage;
 import kg.academia.academia_2_0.services.subject.SubjectService;
 import kg.academia.academia_2_0.services.subject.SubjectStorage;

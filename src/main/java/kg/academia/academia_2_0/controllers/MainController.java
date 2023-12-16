@@ -1,6 +1,6 @@
 package kg.academia.academia_2_0.controllers;
 
-import kg.academia.academia_2_0.model.entities.users.UserData;
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.model.updations.UserdataUpdate;
 import kg.academia.academia_2_0.services.user.UserService;
 import kg.academia.academia_2_0.services.user.UserStorage;
@@ -29,8 +29,8 @@ public class MainController {
 
     @GetMapping
     public String main(Principal principal){
-        UserData userData = userStorage.getUserDataByUsername(principal.getName());
-        switch (userData.getRole()){
+        Employee employee = userStorage.getUserDataByUsername(principal.getName());
+        switch (employee.getRole()){
             case ROLE_SUPER_ADMIN -> {
                 return "redirect:/super-admin/branches";
             }
@@ -54,8 +54,8 @@ public class MainController {
 
     @GetMapping("/profile")
     public String profile(Principal principal){
-        UserData userData = userStorage.getUserDataByUsername(principal.getName());
-        switch (userData.getRole()){
+        Employee employee = userStorage.getUserDataByUsername(principal.getName());
+        switch (employee.getRole()){
             case ROLE_SUPER_ADMIN -> {
                 return "redirect:/super-admin/profile";
             }

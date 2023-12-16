@@ -119,7 +119,7 @@
                     <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
                         <div>
                             <h3 class="font-weight-bold mt-1"
-                                th:text="'Ученик: ' + ${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}"></h3>
+                                th:text="'Ученик: ' + ${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}"></h3>
                         </div>
                     </div>
                 </div>
@@ -134,19 +134,19 @@
                                         <tbody>
                                         <tr>
                                             <td class="font-weight-bold">Имя Фамилия</td>
-                                            <td th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}"></td>
+                                            <td th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">email</td>
-                                            <td th:text="${pupil.userData.email}"></td>
+                                            <td th:text="${pupil.employee.email}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Номер</td>
-                                            <td th:text="${pupil.userData.phoneNumber}"></td>
+                                            <td th:text="${pupil.employee.phoneNumber}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">День рождения</td>
-                                            <td th:text="${pupil.userData.dateOfBirth}"></td>
+                                            <td th:text="${pupil.employee.dateOfBirth}"></td>
                                         </tr>
                                         <tr>
                                             <td class="font-weight-bold">Баланс</td>
@@ -156,8 +156,8 @@
                                             <td class="font-weight-bold">Статус</td>
                                             <td>
                                                 <p class="badge"
-                                                   th:classappend="${pupil.userData.active} ? 'badge-success' : 'badge-secondary'"
-                                                   th:text="${pupil.userData.active} ? 'Активен' : 'Не активен'"></p>
+                                                   th:classappend="${pupil.employee.active} ? 'badge-success' : 'badge-secondary'"
+                                                   th:text="${pupil.employee.active} ? 'Активен' : 'Не активен'"></p>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -202,7 +202,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <form class="forms-sample" id="update-user-data-form">
-                                    <input id="userdataId" name="userdataId" th:value="${pupil.userData.id}" hidden>
+                                    <input id="userdataId" name="userdataId" th:value="${pupil.employee.id}" hidden>
                                     <div class="form-group">
                                         <label for="firstname">Имя</label>
                                         <input type="text" class="form-control" name="firstname" id="firstname"

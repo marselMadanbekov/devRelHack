@@ -1,7 +1,5 @@
 package kg.academia.academia_2_0.services.branch;
 
-import kg.academia.academia_2_0.model.creations.BranchCreate;
-import kg.academia.academia_2_0.model.entities.Branch;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

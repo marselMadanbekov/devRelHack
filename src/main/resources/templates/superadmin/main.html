@@ -180,12 +180,12 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="owner : ${owners}">
-                                            <td th:text="${owner.userData.firstname}"></td>
-                                            <td th:text="${owner.userData.lastname}">Photoshop</td>
-                                            <td th:text="${owner.userData.phoneNumber}"></td>
+                                            <td th:text="${owner.employee.firstname}"></td>
+                                            <td th:text="${owner.employee.lastname}">Photoshop</td>
+                                            <td th:text="${owner.employee.phoneNumber}"></td>
                                             <td><label class="badge"
-                                                       th:classappend="${owner.userData.active ? 'badge-success' : 'badge-secondary'}"
-                                                       th:text="${owner.userData.active ? 'Активен' : 'Не активен'}"></label></td>
+                                                       th:classappend="${owner.employee.active ? 'badge-success' : 'badge-secondary'}"
+                                                       th:text="${owner.employee.active ? 'Активен' : 'Не активен'}"></label></td>
                                         </tr>
                                         </tbody>
                                     </table>

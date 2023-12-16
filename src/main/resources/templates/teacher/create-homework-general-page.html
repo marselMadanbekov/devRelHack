@@ -144,7 +144,7 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="created : ${createdHomeworks}">
-                                            <td th:text="${created.pupil.userData.firstname} + ' ' + ${created.pupil.userData.lastname}"></td>
+                                            <td th:text="${created.pupil.employee.firstname} + ' ' + ${created.pupil.employee.lastname}"></td>
                                             <td>
                                                 <a class="btn btn-sm btn-success"
                                                         th:href="'/teacher/homeworks/edit-mental-homework?homeworkId=' + ${created.id}">
@@ -153,7 +153,7 @@
                                             </td>
                                         </tr>
                                         <tr th:each="pupil : ${pupilsToCreateHomework}">
-                                            <td th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}"></td>
+                                            <td th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}"></td>
                                             <td>
                                                 <button class="btn btn-sm btn-primary createHomeworkButton"
                                                         th:attr="pupilId=${pupil.id}">Создать
@@ -189,7 +189,7 @@
                                         <tbody>
                                         <tr th:each="homework: ${pastHomeworks}">
                                             <td>
-                                                <a th:text="${homework.pupil.userData.firstname} + ' ' + ${homework.pupil.userData.lastname}"
+                                                <a th:text="${homework.pupil.employee.firstname} + ' ' + ${homework.pupil.employee.lastname}"
                                                    th:href="'/teacher/homeworks/edit-mental-homework?homeworkId=' + ${homework.id}">
                                                 </a>
                                             </td>

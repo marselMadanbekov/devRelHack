@@ -147,7 +147,7 @@
                                             <td class="font-weight-bold">Учитель</td>
                                             <td>
                                                 <p th:if="${group.teacher != null}"
-                                                   th:text="${group.teacher.userData.firstname} + ' ' + ${group.teacher.userData.lastname}"></p>
+                                                   th:text="${group.teacher.employee.firstname} + ' ' + ${group.teacher.employee.lastname}"></p>
                                                 <p class="badge" th:if="${group.teacher == null}"
                                                    th:classappend="'badge-danger'">Не назначен</p>
                                             </td>
@@ -178,9 +178,9 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
-                                        <tr th:each="lesson : ${group.timetable.keySet()}">
-                                            <td class="font-weight-bold" th:text="${lesson.toString()}">Понедельник</td>
-                                            <td th:text="${group.timetable.get(lesson)}"></td>
+                                        <tr th:each="event : ${group.timetable.keySet()}">
+                                            <td class="font-weight-bold" th:text="${event.toString()}">Понедельник</td>
+                                            <td th:text="${group.timetable.get(event)}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -224,13 +224,13 @@
                                         <tbody>
                                         <tr th:each="pupil : ${group.pupils}">
                                             <td>
-                                                <a th:text="${pupil.userData.firstname}"></a>
+                                                <a th:text="${pupil.employee.firstname}"></a>
                                             </td>
-                                            <td th:text="${pupil.userData.lastname}"></td>
-                                            <td th:text="${pupil.userData.phoneNumber}"></td>
+                                            <td th:text="${pupil.employee.lastname}"></td>
+                                            <td th:text="${pupil.employee.phoneNumber}"></td>
                                             <td>
-                                                <label th:if="${pupil.userData.active}" class="badge badge-success">Активен</label>
-                                                <label th:if="${!pupil.userData.active}" class="badge badge-danger">Не
+                                                <label th:if="${pupil.employee.active}" class="badge badge-success">Активен</label>
+                                                <label th:if="${!pupil.employee.active}" class="badge badge-danger">Не
                                                     Активен</label>
                                             </td>
                                         </tr>

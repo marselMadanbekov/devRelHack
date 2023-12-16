@@ -211,7 +211,7 @@
                                     <div class="col-md-4">
                                         <select class="js-example-basic-single w-100" id="pupilSelect">
                                             <option value="0">Не выбран</option>
-                                            <option th:value="${pupil.id}" th:each="pupil : ${pupils}" th:text="${pupil.userData.firstname} + ' ' + ${pupil.userData.lastname}">Alabama</option>
+                                            <option th:value="${pupil.id}" th:each="pupil : ${pupils}" th:text="${pupil.employee.firstname} + ' ' + ${pupil.employee.lastname}">Alabama</option>
                                         </select>
                                     </div>
                                     <div>

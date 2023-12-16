@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.controllers.superAdmin;
 
-import kg.academia.academia_2_0.model.entities.Subject;
 import kg.academia.academia_2_0.services.subject.SubjectStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
