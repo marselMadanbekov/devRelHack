@@ -19,8 +19,10 @@ public class EmployeeCreate {
     private String password;
     private String position;
     private Double rating;
-    private Level level;
+    private Integer level;
     private List<String> skills;
     private Map<String,String> socialMedias;
     private Integer role;
+    private String email;
+
 }

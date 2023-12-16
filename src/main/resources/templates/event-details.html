@@ -30,7 +30,7 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo mr-5" href="/main"><img src="/static/images/logo.png" class="mr-2"
-                                                                              alt="logo"/></a>
+                                                                      alt="logo"/></a>
             <a class="navbar-brand brand-logo-mini" href="/main"><img src="/static/images/logo-mini.png"
                                                                               alt="logo"/></a>
         </div>
@@ -47,7 +47,7 @@
                 </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="/static/images/faces/profile.png" alt="profile"/>
+                        <img src="/images/faces/profile.png" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                          aria-labelledby="profileDropdown">
@@ -76,58 +76,23 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/owner/branches">
-                        <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Главная
-                            </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/groups?branchId=' + ${branchId}">
+                    <a class="nav-link" href="/events">
                         <i class="mdi mdi-chart-bubble menu-icon"></i>
-                        <span class="menu-title">Группы
+                        <span class="menu-title">Мероприятия
                             </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/subjects?branchId=' + ${branchId}">
+                    <a class="nav-link" href="/users">
                         <i class="mdi mdi-book-multiple menu-icon"></i>
-                        <span class="menu-title">Предметы
+                        <span class="menu-title">Пользователи
                             </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/teachers?branchId=' + ${branchId}">
+                    <a class="nav-link" href="/chats">
                         <i class="mdi mdi-account-card-details menu-icon"></i>
-                        <span class="menu-title">Учителя
-                            </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/pupils?branchId=' + ${branchId}">
-                        <i class="mdi mdi-face menu-icon"></i>
-                        <span class="menu-title">Ученики
-                            </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/temp-users?branchId=' + ${branchId}">
-                        <i class="mdi mdi-clipboard-arrow-down menu-icon"></i>
-                        <span class="menu-title">Запросы
-                            </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="'/owner/branches/branch-details?branchId=' + ${branchId}">
-                        <i class="mdi mdi-information menu-icon"></i>
-                        <span class="menu-title">Информация
-                            </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/trainer">
-                        <i class="mdi mdi-puzzle menu-icon"></i>
-                        <span class="menu-title">Тренажёр
+                        <span class="menu-title">Чаты
                             </span>
                     </a>
                 </li>
@@ -137,50 +102,93 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row mb-3">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold ">Создать Группу</h3>
+                    <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
+                        <div class="mr-2">
+                            <button id="delete-teacher" class="btn btn-sm btn-danger delete-pupil" th:attr="eventId=${event.id}">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <h3 class="font-weight-bold mt-1"
+                                th:text="'Мероприятие: ' + ${event.name}"></h3>
+                            <p class="font-weight-bold"
+                               th:text="'с ' + ${event.getStartDateTime()} + ' - до ' + ${event.getEndDateTime()}"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 grid-margin stretch-card">
+                    <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <form class="forms-sample" id="create-group-form">
-                                    <input name="branchId" th:value="${branchId}" hidden>
-                                    <div class="form-group">
-                                        <label for="name">Название</label>
-                                        <input type="text" class="form-control" name="name" id="name"
-                                               placeholder="Название" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subject">Предмет</label>
-                                        <select class="form-control" name="subjectId" id="subject">
-                                            <option th:each="subject : ${subjects}" th:value="${subject.id}"
-                                                    th:text="${subject.name}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="teacher">Учитель</label>
-                                        <select class="form-control" name="teacherId" id="teacher">
-                                            <option value="0" selected>Не выбран</option>
-                                            <option th:each="teacher: ${teachers}" th:value="${teacher.id}"
-                                                    th:text="${teacher.employee.firstname} + ' ' + ${teacher.employee.lastname}"></option>
-                                        </select>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <div class="spinner-border text-primary" role="status" hidden id="progress-spinner">
-                                            <span hidden class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mr-2">Создать</button>
-                                    <button class="btn btn-light">Сбросить</button>
-                                </form>
+                                <h4 class="card-title">Информация
+                                </h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Описание</td>
+                                            <td th:text="${event.description}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Организатор</td>
+                                            <td th:text="${event.organizer.firstname} + ' ' + ${event.organizer.lastname}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Зарегистрировавшиеся пользователи</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                ФИО
+                                            </th>
+                                            <th>
+                                                Имя пользователя
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="user : ${event.getParticipantsAttendance().keySet()}">
+                                            <td th:text="${user.firstname} + ' ' + ${user.lastname}"></td>
+                                            <td th:text="${user.username}"></td>
+                                            <td>
+                                                <label class="badge badge-success" th:if="${event.getParticipantsAttendance().get(user)}">Был</label>
+                                                <label class="badge badge-danger" th:if="${!event.getParticipantsAttendance().get(user)}">Не был</label>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Целевая аудитория</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                        <tr th:each="skill : ${event.targetSkills}">
+                                            <td th:text="${skill}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
@@ -202,6 +210,7 @@
 <script src="/static/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
+<script src="/static/vendors/chart.js/Chart.min.js"></script>
 <script src="/static/vendors/datatables.net/jquery.dataTables.js"></script>
 <script src="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="/static/js/dataTables.select.min.js"></script>
@@ -214,10 +223,14 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="/static/js/dashboard.js"></script>
-<script src="/custom-js/admin/create-event.js"></script>
-<!-- End custom js for this page-->
+<script src="/static/custom-js/admin/add-skill-to-employee.js"></script>
+<script src="/static/custom-js/admin/delete-skill-of-employee.js"></script>
+<script src="/static/custom-js/admin/update-userdata.js"></script>
+<script src="/static/custom-js/admin/delete-socMedia-of-employee.js"></script>
+<script src="/static/custom-js/admin/add-socMedia-to-employee.js"></script>
 <script src="/static/custom-js/general/check-notifications.js"></script>
 
+<!-- End custom js for this page-->
 </body>
 
 </html>
