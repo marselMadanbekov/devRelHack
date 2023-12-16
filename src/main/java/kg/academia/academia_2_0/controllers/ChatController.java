@@ -21,8 +21,8 @@ public class ChatController {
 
     @GetMapping("")
     public String tempUsers(Model model){
-        Employee userData = contextService.getCurrentEmployee();
-        model.addAttribute("userData", userData);
+//        Employee userData = contextService.getCurrentEmployee();
+//        model.addAttribute("userData", userData);
         return "chat/index";
     }
 }
