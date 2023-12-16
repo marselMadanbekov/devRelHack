@@ -35,17 +35,10 @@ public class NotificationController {
 
     @GetMapping
     public String notifications(Model model){
-        Employee employee = contextService.getCurrentUsersData();
+        Employee employee = contextService.getCurrentEmployee();
         List<Notification> notifications = notificationStorage.getNonViewedNotificationsByUserData(employee);
         model.addAttribute("notifications", notifications);
-        return switch (employee.getRole()){
-            case ROLE_SUPER_ADMIN -> "superadmin/notifications";
-            case ROLE_BRANCH_OWNER -> "owner/notifications";
-            case ROLE_ADMIN -> "admin/notifications";
-            case ROLE_TEACHER -> "teacher/notifications";
-            case ROLE_PUPIL -> "pupil/notifications";
-            default -> throw new IllegalStateException("Unexpected value: " + employee.getRole());
-        };
+        return "admin/notifications";
     }
 
     @GetMapping("/having-non-read")

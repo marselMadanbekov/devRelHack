@@ -1,5 +1,6 @@
 package kg.academia.academia_2_0.controllers.admin;
 
+import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.services.security.ContextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,9 @@ public class AdminProfileController {
 
     @GetMapping("/profile")
     public String profile(Model model){
-        Admin admin = contextService.getCurrentAdmin();
-        model.addAttribute("admin", admin);
+
+        Employee employee = contextService.getCurrentEmployee();
+        model.addAttribute("employee", employee);
         return "admin/profile";
     }
 }

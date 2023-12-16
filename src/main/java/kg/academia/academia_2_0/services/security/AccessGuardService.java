@@ -14,6 +14,4 @@ public class AccessGuardService {
         this.contextService = contextService;
         this.userStorage = userStorage;
     }
-
-
 }

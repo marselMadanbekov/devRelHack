@@ -29,52 +29,12 @@ public class MainController {
 
     @GetMapping
     public String main(Principal principal){
-        Employee employee = userStorage.getUserDataByUsername(principal.getName());
-        switch (employee.getRole()){
-            case ROLE_SUPER_ADMIN -> {
-                return "redirect:/super-admin/branches";
-            }
-            case ROLE_BRANCH_OWNER -> {
-                return "redirect:/owner/branches";
-            }
-            case ROLE_ADMIN -> {
-                return "redirect:/admin/groups";
-            }
-            case ROLE_TEACHER -> {
-                return "redirect:/teacher/groups";
-            }
-            case ROLE_PUPIL -> {
-                return "redirect:/pupil/groups";
-            }
-            default -> {
-                return "redirect:/login";
-            }
-        }
+        return "admin/main";
     }
 
     @GetMapping("/profile")
     public String profile(Principal principal){
-        Employee employee = userStorage.getUserDataByUsername(principal.getName());
-        switch (employee.getRole()){
-            case ROLE_SUPER_ADMIN -> {
-                return "redirect:/super-admin/profile";
-            }
-            case ROLE_BRANCH_OWNER -> {
-                return "redirect:/owner/profile";
-            }
-            case ROLE_ADMIN -> {
-                return "redirect:/admin/profile";
-            }
-            case ROLE_TEACHER -> {
-                return "redirect:/teacher/profile";
-            }
-            case ROLE_PUPIL -> {
-                return "redirect:/pupil/profile";
-            }
-            default -> {
-                return "redirect:/login";
-            }
-        }
+        return "admin/profile";
     }
 
     @PostMapping("/profile/update-user-data")
