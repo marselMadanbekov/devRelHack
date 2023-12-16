@@ -10,19 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/chat/test")
-public class ChatController {
+@RequestMapping("/telegram")
+public class TelegramController {
     private final ContextService contextService;
 
     @Autowired
-    public ChatController(ContextService contextService) {
+    public TelegramController(ContextService contextService) {
         this.contextService = contextService;
     }
 
     @GetMapping("")
     public String tempUsers(Model model){
-        Employee userData = contextService.getCurrentEmployee();
-        model.addAttribute("userData", userData);
-        return "chat/index";
+        return "telegram/analyze";
     }
 }
