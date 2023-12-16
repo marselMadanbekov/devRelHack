@@ -4,6 +4,9 @@ import kg.academia.academia_2_0.model.entities.Event;
 import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,6 +47,12 @@ public class EventStorageImpl implements EventStorage {
     @Override
     public void deleteById(Long id) {
         eventRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Event> findEventsByPage(Integer page) {
+        Pageable pageable = PageRequest.of(page,15);
+        return eventRepository.findAll(pageable);
     }
 
 }

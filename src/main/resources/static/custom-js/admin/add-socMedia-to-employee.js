@@ -1,25 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const updateUserdataForm = document.getElementById('update-user-data-form');
+    const addMediaForm = document.getElementById('add-social-media-form');
 
-    updateUserdataForm.addEventListener('submit', function (e){
+    addMediaForm.addEventListener('submit', function (e){
         e.preventDefault();
-        document.getElementById("progress-spinner").hidden = false;
-        if(confirm("Вы уверены что хотите изменить данные пользователя?")) {
+
+        if(confirm("Вы уверены что хотите добавить социальную сеть пользователю?")) {
             let formData = new FormData(this);
             $.ajax({
-                url: "/users/update-user-data",
+                url: "/users/add-social-media",
                 type: "POST",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    document.getElementById("progress-spinner").hidden = true;
-
                     alert(response.message);
                     window.location.reload();
                 },
                 error: function (xhr) {
-                    document.getElementById("progress-spinner").hidden = true;
                     try {
                         const errorData = JSON.parse(xhr.responseText);
                         if (errorData.hasOwnProperty("error")) {

@@ -1,22 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const updateUserdataForm = document.getElementById('update-user-data-form');
+    const createGroupForm = document.getElementById('create-event-form');
 
-    updateUserdataForm.addEventListener('submit', function (e){
+    createGroupForm.addEventListener('submit', function (e) {
         e.preventDefault();
         document.getElementById("progress-spinner").hidden = false;
-        if(confirm("Вы уверены что хотите изменить данные пользователя?")) {
+        if (confirm("Вы уверены что хотите создать группу?")) {
             let formData = new FormData(this);
             $.ajax({
-                url: "/users/update-user-data",
+                url: "/events/create-event",
                 type: "POST",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (response) {
                     document.getElementById("progress-spinner").hidden = true;
-
                     alert(response.message);
-                    window.location.reload();
+                    window.location.href = "/events";
                 },
                 error: function (xhr) {
                     document.getElementById("progress-spinner").hidden = true;

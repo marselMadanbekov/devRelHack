@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 public interface EventService {
     void createEvent(EventCreate eventCreate);
 
-    Event findEventById(Long lessonId);
+    Event findEventById(Long eventId);
 
     Page<Event> eventsByPage(Integer page);
+
+    void registerToEventCurrentUser(Long eventId);
 }

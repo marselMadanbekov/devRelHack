@@ -40,7 +40,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             Authentication authentication
     ) throws IOException {
 
-        String targetUrl = determineTargetUrl(authentication);
+        String targetUrl = "/events";
 
         if (response.isCommitted()) {
 //            logger.debug(
@@ -50,27 +50,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }
 
         redirectStrategy.sendRedirect(request, response, targetUrl);
-    }
-
-    protected String determineTargetUrl(final Authentication authentication) {
-
-        Map<String, String> roleTargetUrlMap = new HashMap<>();
-        roleTargetUrlMap.put("ROLE_SUPER_ADMIN", "/super-admin/branches");
-        roleTargetUrlMap.put("ROLE_BRANCH_OWNER", "/owner/branches");
-        roleTargetUrlMap.put("ROLE_ADMIN", "/admin/groups");
-        roleTargetUrlMap.put("ROLE_TEACHER", "/teacher/groups");
-        roleTargetUrlMap.put("ROLE_PUPIL", "/pupil/groups");
-        roleTargetUrlMap.put("ROlE_TEMP_USER", "/temp-user");
-
-        final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        for (final GrantedAuthority grantedAuthority : authorities) {
-            String authorityName = grantedAuthority.getAuthority();
-            if (roleTargetUrlMap.containsKey(authorityName)) {
-                return roleTargetUrlMap.get(authorityName);
-            }
-        }
-
-        throw new IllegalStateException();
     }
 
     protected void clearAuthenticationAttributes(HttpServletRequest request) {

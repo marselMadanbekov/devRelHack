@@ -3,6 +3,9 @@ package kg.academia.academia_2_0.services.user;
 import kg.academia.academia_2_0.model.entities.users.Employee;
 import kg.academia.academia_2_0.repositories.userRepos.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -40,5 +43,16 @@ public class UserStorageImpl implements UserStorage {
     @Override
     public void deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Employee> getEmployeesByPage(Integer page) {
+        Pageable pageable = PageRequest.of(page,15);
+        return employeeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<String> findUniqueSkills() {
+        return employeeRepository.findUniqueSkills();
     }
 }

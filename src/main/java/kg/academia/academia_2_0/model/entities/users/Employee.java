@@ -73,4 +73,26 @@ public class Employee implements UserDetails {
     public boolean isEnabled() {
         return active;
     }
+
+    public void addSocialMedia(String media, String username) {
+        if(socialMedias == null){
+            socialMedias = new HashMap<>();
+        }
+        socialMedias.put(media,username);
+    }
+
+    public void addSkill(String skillName) {
+        if(skills == null){
+            skills = new ArrayList<>();
+        }
+        skills.add(skillName);
+    }
+
+    public void removeSkill(String skillName) {
+        skills.remove(skillName);
+    }
+
+    public void removeSocMedia(String socMedia) {
+        socialMedias.remove(socMedia);
+    }
 }
