@@ -21,7 +21,7 @@ public class ContextService {
         return authentication.getName();
     }
     public Employee getCurrentEmployee(){
-        return userStorage.getUserDataByUsername(getUsernameOfCurrentUser());
+        return userStorage.getEmployeeByUsername(getUsernameOfCurrentUser());
     }
 
 
