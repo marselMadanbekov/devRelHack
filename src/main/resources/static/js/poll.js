@@ -17,6 +17,38 @@ function createPoll()
         });
     message.value = '';
     closeForm.click();
-
-
 }
+
+function getPolls()
+{
+    let url = "http://192.168.43.33:2323/api/telegram/polls";
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            data = data.result;
+            let text = '';
+            for(let i = 0; i < data.length; i++)
+            {
+                let option = '';
+                let options = data[i].poll.options;
+                for(let j = 0; j < options.length; j++)
+                {
+                    let part = `<li class="list-group-item">${options[j].text}<span style="margin-left: 40px; color: #00bb00">${options[j].voter_count}</span></li>`;
+                    option += part;
+                }
+                let item = `<div class="card mb-4 ml-4" style="width: 18rem;">
+                                    <div class="card-header">
+                                        ${data[i].poll.question}
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        ${option}
+                                   </ul>
+                                </div>`;
+                text += item;
+                document.getElementById('pollAreaId').innerHTML = text;
+            }
+        });
+}
+
+getPolls();
