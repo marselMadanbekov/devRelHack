@@ -20,7 +20,7 @@ public class EmailServiceImpl {
     public void sendSimpleMessage(String targetUser, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(targetUser);
-        message.setSubject("Академия Роста");
+        message.setSubject("ManasBM");
         message.setText(text);
         emailSender.send(message);
     }
@@ -28,7 +28,7 @@ public class EmailServiceImpl {
     public void sendPasswordResetMail(String targetUser, String confirmationCode){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(targetUser);
-        message.setSubject("Академия Роста");
+        message.setSubject("ManasBM");
         message.setText(passwordResetMail(confirmationCode));
         emailSender.send(message);
     }
