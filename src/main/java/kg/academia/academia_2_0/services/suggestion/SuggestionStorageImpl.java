@@ -1,6 +1,5 @@
 package kg.academia.academia_2_0.services.suggestion;
 
-import kg.academia.academia_2_0.repositories.CommentRepository;
 import kg.academia.academia_2_0.repositories.SuggestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

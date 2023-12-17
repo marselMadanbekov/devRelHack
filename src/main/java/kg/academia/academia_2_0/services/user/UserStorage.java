@@ -19,4 +19,6 @@ public interface UserStorage {
     Page<Employee> getEmployeesByPage(Integer page);
 
     List<String> findUniqueSkills();
+
+    List<Employee> findAllBySkills(List<String> targetSkills);
 }

@@ -12,4 +12,6 @@ public interface EventService {
     Page<Event> eventsByPage(Integer page);
 
     void registerToEventCurrentUser(Long eventId);
+
+    void createComment(Long eventId, String message, Integer grade);
 }
