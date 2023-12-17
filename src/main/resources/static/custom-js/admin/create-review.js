@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                alert('Данные успешно отправлены на сервер:' + response);
+                alert('Комментарий добавлен.');
             },
             error: function (xhr, status, error) {
                 // Обработка ошибок запроса, если нужно
