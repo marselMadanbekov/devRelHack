@@ -2,7 +2,6 @@ $(document).ready(function () {
     const salesChartCanvas = document.getElementById('new-pupils-chart');
     const prevMonthButton = document.getElementById('prevMonthButtonPupils');
     const nextMonthButton = document.getElementById('nextMonthButtonPupils');
-    const branchId = document.getElementById('branchId').value;
     let month = 0;
     let salesChart = null;
 
@@ -30,13 +29,20 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: '/super-admin-owner/branches/branch-analytics/new-pupils?branchId=' + branchId + '&monthShift=' + month,
+            url: 'http://192.168.43.33:2323/api/telegram/activity',
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                const labels = data.map(item => item.label);
-                const values = data.map(item => item.value);
-
+                console.log(data);
+                data = data.result
+                const labels = []
+                const values = []
+                for (let key in data) {
+                  if (data.hasOwnProperty(key)) {
+                    labels.push(key);
+                    values.push(data[key])
+                  }
+                }
                 const chartData = {
                     labels: labels,
                     datasets: [{
@@ -50,7 +56,7 @@ $(document).ready(function () {
                 };
 
                 salesChart = new Chart(salesChartCanvas, {
-                    type: 'bar',
+                    type: 'line',
                     data: chartData,
                     options: {
                         responsive: true,

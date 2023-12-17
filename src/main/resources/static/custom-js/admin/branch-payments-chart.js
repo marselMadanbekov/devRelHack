@@ -9,7 +9,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: 'https://192.168.43.33:2323/api/telegram/get/popular/messages',
+            url: 'http://192.168.43.33:2323/api/telegram/get/popular/messages',
             method: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -29,16 +29,26 @@ $(document).ready(function () {
                 };
 
                 salesChart = new Chart(salesChartCanvas, {
-                    type: 'line',
+                    type: 'bar',
                     data: chartData,
                     options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                            },
-                        },
-                    },
+                                            responsive: true,
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }]
+                                            },
+                                            legend: {
+                                                display: false
+                                            },
+                                            elements: {
+                                                point: {
+                                                    radius: 0
+                                                }
+                                            }
+                                        },
                 });
             },
 
