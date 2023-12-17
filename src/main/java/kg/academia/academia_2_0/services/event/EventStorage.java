@@ -20,4 +20,6 @@ public interface EventStorage {
     void deleteById(Long id);
 
     Page<Event> findEventsByPage(Integer page);
+
+    List<Event> findTop5EventsByRating();
 }

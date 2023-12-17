@@ -14,4 +14,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByEndDateTime(LocalDateTime date);
 
     List<Event> findByOrganizer(Employee organizer);
+
+    List<Event> findTop5ByOrderByRatingDesc();
 }

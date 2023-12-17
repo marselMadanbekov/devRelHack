@@ -32,6 +32,7 @@ public class Event {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm") // Устанавливаем желаемый формат даты и времени
     private LocalDateTime endDateTime;
     private String photo;
+    private Double rating;
     @ElementCollection
     private List<String> targetSkills;
     @ManyToOne

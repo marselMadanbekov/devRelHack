@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ChartTuple {
     private String label;
-    private Integer value;
+    private Double value;
 }

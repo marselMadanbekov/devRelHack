@@ -4,6 +4,7 @@ import kg.academia.academia_2_0.model.creations.EventCreate;
 import kg.academia.academia_2_0.model.entities.Event;
 import kg.academia.academia_2_0.model.entities.Review;
 import kg.academia.academia_2_0.model.entities.users.Employee;
+import kg.academia.academia_2_0.model.utilities.ChartTuple;
 import kg.academia.academia_2_0.services.comment.ReviewStorage;
 import kg.academia.academia_2_0.services.event.EventService;
 import kg.academia.academia_2_0.services.security.ContextService;
@@ -102,6 +103,8 @@ public class EventController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
+
+
     @PostMapping("/create-review")
     public ResponseEntity<Map<String, String>> createReview(@RequestParam Long eventId,
                                                             @RequestParam String message,
@@ -115,5 +118,15 @@ public class EventController {
             response.put("error", e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/events-analytics")
+    public String eventAnalytics(){
+        return "events-analytics";
+    }
+
+    @PostMapping("/top-events")
+    public ResponseEntity<List<ChartTuple>> topEvents(){
+        return ResponseEntity.ok(eventService.findTopEventsToChart());
     }
 }

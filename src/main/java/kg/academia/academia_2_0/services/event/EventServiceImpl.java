@@ -4,6 +4,7 @@ import kg.academia.academia_2_0.model.creations.EventCreate;
 import kg.academia.academia_2_0.model.entities.Event;
 import kg.academia.academia_2_0.model.entities.Review;
 import kg.academia.academia_2_0.model.entities.users.Employee;
+import kg.academia.academia_2_0.model.utilities.ChartTuple;
 import kg.academia.academia_2_0.services.comment.ReviewStorage;
 import kg.academia.academia_2_0.services.notification.NotificationService;
 import kg.academia.academia_2_0.services.photo.PhotoService;
@@ -15,8 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -28,17 +28,15 @@ public class EventServiceImpl implements EventService {
     private final PhotoService photoService;
 
     private final ReviewStorage reviewStorage;
-    private final NotificationService notificationService;
 
     @Autowired
-    public EventServiceImpl(EventStorage eventStorage, ContextService contextService, UserStorage userStorage, UserService userService, PhotoService photoService, ReviewStorage reviewStorage, NotificationService notificationService) {
+    public EventServiceImpl(EventStorage eventStorage, ContextService contextService, UserStorage userStorage, UserService userService, PhotoService photoService, ReviewStorage reviewStorage) {
         this.eventStorage = eventStorage;
         this.contextService = contextService;
         this.userStorage = userStorage;
         this.userService = userService;
         this.photoService = photoService;
         this.reviewStorage = reviewStorage;
-        this.notificationService = notificationService;
     }
 
     @Override
@@ -105,6 +103,14 @@ public class EventServiceImpl implements EventService {
         review.setGrade(grade);
         review.setAuthor(employee);
         reviewStorage.save(review);
+
+        List<Review> reviews = reviewStorage.findByEvent(event);
+
+        double averageRating = reviews.stream()
+                .mapToDouble(Review::getGrade) // Преобразование оценок в double
+                .average() // Вычисление среднего значения
+                .orElse(0.0);
+        event.setRating(averageRating);
     }
 
     @Override
@@ -115,5 +121,21 @@ public class EventServiceImpl implements EventService {
         event.changeStatusOfParticipant(employee);
 
         eventStorage.save(event);
+    }
+
+    @Override
+    public List<ChartTuple> findTopEventsToChart() {
+        List<Event> events = eventStorage.findTop5EventsByRating();
+        List<ChartTuple> chartTuples = new ArrayList<>();
+
+        for(Event event : events){
+            chartTuples.add(ChartTuple.builder()
+                            .label(event.getName())
+                            .value(event.getRating())
+                    .build());
+            System.out.println(event.getName() + " - " + event.getRating());
+        }
+
+        return chartTuples;
     }
 }

@@ -55,4 +55,9 @@ public class EventStorageImpl implements EventStorage {
         return eventRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Event> findTop5EventsByRating() {
+        return eventRepository.findTop5ByOrderByRatingDesc();
+    }
+
 }
