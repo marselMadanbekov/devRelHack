@@ -1,26 +1,26 @@
 $(document).ready(function () {
     const salesChartCanvas = document.getElementById('new-pupils-chart');
-    const prevMonthButton = document.getElementById('prevMonthButtonPupils');
-    const nextMonthButton = document.getElementById('nextMonthButtonPupils');
-    let month = 0;
+//    const prevMonthButton = document.getElementById('prevMonthButtonPupils');
+//    const nextMonthButton = document.getElementById('nextMonthButtonPupils');
+//    let month = 0;
     let salesChart = null;
-
-
-    prevMonthButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        month += 1;
-        updateChart();
-    });
-
-    nextMonthButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (month > 0) {
-            month -= 1;
-            updateChart();
-        } else {
-            alert("Следующие месяцы недоступны");
-        }
-    });
+//
+//
+//    prevMonthButton.addEventListener('click', function (e) {
+//        e.preventDefault();
+//        month += 1;
+//        updateChart();
+//    });
+//
+//    nextMonthButton.addEventListener('click', function (e) {
+//        e.preventDefault();
+//        if (month > 0) {
+//            month -= 1;
+//            updateChart();
+//        } else {
+//            alert("Следующие месяцы недоступны");
+//        }
+//    });
 
 
     function updateChart() {
@@ -33,7 +33,6 @@ $(document).ready(function () {
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 data = data.result
                 const labels = []
                 const values = []
@@ -56,7 +55,7 @@ $(document).ready(function () {
                 };
 
                 salesChart = new Chart(salesChartCanvas, {
-                    type: 'line',
+                    type: 'horizontalBar',
                     data: chartData,
                     options: {
                         responsive: true,

@@ -114,6 +114,13 @@
                             <p class="font-weight-bold"
                                th:text="'с ' + ${event.getStartDateTime()} + ' - до ' + ${event.getEndDateTime()}"></p>
                         </div>
+	                    <div class="mr-2">
+		                    <a id="" class="btn btn-sm btn-primary"
+		                       th:href="'http://192.168.43.33:2323/api/event/report/' + ${event.id}">
+<!--		                            th:href="'http://192.168.43.33:2323/api/event/report/'${event.id}}">-->
+			                    Отчет
+		                    </a>
+	                    </div>
                     </div>
                 </div>
                 <div class="row">

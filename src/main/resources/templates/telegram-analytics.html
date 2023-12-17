@@ -126,31 +126,47 @@
                                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                         <h4 class="card-title">Активность</h4>
                                     </div>
-                                    <div class="col-12 col-xl-4">
-                                        <div class="justify-content-end d-flex">
-                                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                                <a class="btn btn-sm btn-primary" id="prevMonthButtonPupils"> <</a>
-                                                <a class="btn btn-sm btn-primary" id="nextMonthButtonPupils"> ></a>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-12 col-xl-4">-->
+<!--                                        <div class="justify-content-end d-flex">-->
+<!--                                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">-->
+<!--                                                <a class="btn btn-sm btn-primary" id="prevMonthButtonPupils"> <</a>-->
+<!--                                                <a class="btn btn-sm btn-primary" id="nextMonthButtonPupils"> ></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                                 <canvas id="new-pupils-chart"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                        <h4 class="card-title">Ученики в предметах</h4>
-                                    </div>
-                                </div>
-                                <canvas id="pupils-subject-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
+	                <div class="col-lg-6 grid-margin stretch-card">
+		                <div class="card">
+			                <div class="card-body">
+				                <div class="row mb-3">
+					                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+						                <h4 class="card-title">Количество отправленных сообщений</h4>
+					                </div>
+				                </div>
+				
+				                <div class="table-responsive">
+					                <table class="table">
+						                <thead>
+						                <tr>
+							                <th>id</th>
+							                <th>Имя</th>
+							                <th>Фамилия</th>
+							                <th>Количество сообщений</th>
+						                </tr>
+						                </thead>
+						                <tbody id="UserTableId">
+						                </tbody>
+					                </table>
+				                </div>
+			
+			                </div>
+		                </div>
+	                </div>
+
                 </div>
             </div>
             <!-- content-wrapper ends -->
@@ -188,6 +204,8 @@
 <script src="/static/js/dashboard.js"></script>
 <script src="/static/custom-js/admin/branch-payments-chart.js"></script>
 <script src="/static/custom-js/admin/branch-pupils-chart.js"></script>
+
+<script src="/static/js/telegram_user.js"></script>
 <!-- End custom js for this page-->
 </body>
 
