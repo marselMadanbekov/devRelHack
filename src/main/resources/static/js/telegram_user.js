@@ -6,18 +6,19 @@ function getUsersAndDisplay()
     .then(response => response.json())
     .then(data => {
         data = data.result;
-
+        let i = 1;
         for(let key in data)
         {
             let row = usersTable.insertRow();
             let id = row.insertCell();
-            id.innerHTML = data[key]['user']['id'];
+            id.innerHTML = i;
             let firstname = row.insertCell();
             firstname.innerHTML = data[key]['user']['firstname'];
             let lastname = row.insertCell();
             lastname.innerHTML = data[key]['user']['lastname'];
             let count = row.insertCell();
-            count.innerHTML = data[key]['count']
+            count.innerHTML = data[key]['count'];
+            i += 1;
         }
     });
 }

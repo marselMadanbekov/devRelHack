@@ -14,6 +14,7 @@ function createPoll()
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            alert('Опрос успешно создан')
         });
     message.value = '';
     closeForm.click();
