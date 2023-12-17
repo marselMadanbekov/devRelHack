@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     createGroupForm.addEventListener('submit', function (e) {
         e.preventDefault();
         document.getElementById("progress-spinner").hidden = false;
-        if (confirm("Вы уверены что хотите создать группу?")) {
+        if (confirm("Вы уверены что хотите создать мероприятие?")) {
             let formData = new FormData(this);
             $.ajax({
                 url: "/events/create-event",

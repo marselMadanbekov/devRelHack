@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener("click", function (e){
             e.preventDefault();
 
-            if(confirm("Вы уверены что хотите удалить социальную сеть пользователя?")){
+            if(confirm("Вы уверены что хотите изменить статус участника?")){
                 let eventId = document.getElementById('eventId').value;
                 let userId = item.getAttribute("userId");
 
