@@ -6,11 +6,12 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Comment {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
+    private Integer grade;
     @ManyToOne
     private Employee author;
     @ManyToOne

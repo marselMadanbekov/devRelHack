@@ -55,4 +55,9 @@ public class UserStorageImpl implements UserStorage {
     public List<String> findUniqueSkills() {
         return employeeRepository.findUniqueSkills();
     }
+
+    @Override
+    public List<Employee> findAllBySkills(List<String> targetSkills) {
+        return employeeRepository.findEmployeesBySkillsIn(targetSkills);
+    }
 }

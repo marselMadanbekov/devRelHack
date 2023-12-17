@@ -1,48 +1,25 @@
 $(document).ready(function () {
-    const salesChartCanvas = document.getElementById('payments-sum-chart');
-    const prevMonthButton = document.getElementById('prevMonthButtonPayment');
-    const nextMonthButton = document.getElementById('nextMonthButtonPayment');
-    const branchId = document.getElementById('branchId').value;
-    const currency = document.getElementById('currency').value;
-    let month = 0;
+    const salesChartCanvas = document.getElementById('popularMessages');
     let salesChart = null;
-
-
-
-    prevMonthButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        month += 1;
-        updateChart();
-    });
-
-    nextMonthButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (month > 0) {
-            month -= 1;
-            updateChart();
-        } else {
-            alert("Следующие месяцы недоступны");
-        }
-    });
 
 
     function updateChart() {
         if (salesChart) {
-            salesChart.destroy();
+            salesChart.destroy(); // Уничтожение предыдущего графика при обновлении
         }
 
         $.ajax({
-            url: '/super-admin-owner/branches/branch-analytics/payments?branchId=' + branchId + '&monthShift=' + month,
+            url: 'https://192.168.43.33:2323/api/telegram/get/popular/messages',
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                const labels = data.map(item => item.label);
-                const values = data.map(item => item.value);
+                const labels = data.result.map(item => item.text);
+                const values = data.result.map(item => item.count);
 
                 const chartData = {
                     labels: labels,
                     datasets: [{
-                        label: currency,
+                        label: 'Количество',
                         data: values,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',

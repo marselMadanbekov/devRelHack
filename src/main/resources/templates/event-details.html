@@ -32,7 +32,7 @@
             <a class="navbar-brand brand-logo mr-5" href="/main"><img src="/static/images/logo.png" class="mr-2"
                                                                       alt="logo"/></a>
             <a class="navbar-brand brand-logo-mini" href="/main"><img src="/static/images/logo-mini.png"
-                                                                              alt="logo"/></a>
+                                                                      alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -90,10 +90,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/chats">
+                    <a class="nav-link" href="/analytics/telegram">
                         <i class="mdi mdi-account-card-details menu-icon"></i>
-                        <span class="menu-title">Чаты
-                            </span>
+                        <span class="menu-title">Аналитика Telegram</span>
                     </a>
                 </li>
             </ul>
@@ -104,7 +103,8 @@
                 <div class="row mb-3">
                     <div class="col-12 d-flex col-xl-8 mb-4 mb-xl-0">
                         <div class="mr-2">
-                            <button id="delete-teacher" class="btn btn-sm btn-danger delete-pupil" th:attr="eventId=${event.id}">
+                            <button id="delete-teacher" class="btn btn-sm btn-danger delete-pupil"
+                                    th:attr="eventId=${event.id}">
                                 <i class="mdi mdi-delete"></i>
                             </button>
                         </div>
@@ -162,8 +162,11 @@
                                             <td th:text="${user.firstname} + ' ' + ${user.lastname}"></td>
                                             <td th:text="${user.username}"></td>
                                             <td>
-                                                <label class="badge badge-success" th:if="${event.getParticipantsAttendance().get(user)}">Был</label>
-                                                <label class="badge badge-danger" th:if="${!event.getParticipantsAttendance().get(user)}">Не был</label>
+                                                <label class="badge badge-success"
+                                                       th:if="${event.getParticipantsAttendance().get(user)}">Был</label>
+                                                <label class="badge badge-danger"
+                                                       th:if="${!event.getParticipantsAttendance().get(user)}">Не
+                                                    был</label>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -185,6 +188,65 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">Комментарии</div>
+                                <blockquote class="blockquote blockquote-primary" th:each="review : ${reviews}">
+                                    <footer class="blockquote-footer" th:text="${review.author.firstname} + ' ' + ${review.author.lastname}"></footer>
+                                    <p th:text="${review.message}"></p>
+                                </blockquote>
+                                <hr>
+                                <div class="card-title">Оставить комментарий</div>
+                                <div>
+                                    <div class="container1 w-25">
+                                        <div class="container__items">
+                                            <input hidden id="eventId" th:value="${event.id}">
+                                            <input type="radio" th:name="'stars' + ${event.id}" th:attr="grade=${5}" th:id="'st5-' + ${event.id}">
+                                            <label th:for="'st5-' + ${event.id}">
+                                                <div class="star-stroke">
+                                                    <div class="star-fill"></div>
+                                                </div>
+                                            </label>
+                                            <input type="radio" th:name="'stars' + ${event.id}" th:attr="grade=${4}" th:id="'st4-'+${event.id}">
+                                            <label th:for="'st4-'+${event.id}">
+                                                <div class="star-stroke">
+                                                    <div class="star-fill"></div>
+                                                </div>
+                                            </label>
+                                            <input type="radio" th:name="'stars' + ${event.id}" th:attr="grade=${3}" th:id="'st3-' + ${event.id}">
+                                            <label th:for="'st3-' + ${event.id}">
+                                                <div class="star-stroke">
+                                                    <div class="star-fill"></div>
+                                                </div>
+                                            </label>
+
+                                            <input type="radio" th:name="'stars' + ${event.id}" th:attr="grade=${2}" th:id="'st2-' + ${event.id}">
+                                            <label th:for="'st2-' + ${event.id}">
+                                                <div class="star-stroke">
+                                                    <div class="star-fill"></div>
+                                                </div>
+                                            </label>
+                                            <input type="radio" th:name="'stars' + ${event.id}" th:attr="grade=${1}" th:id="'st1-' + ${event.id}">
+                                            <label th:for="'st1-' + ${event.id}">
+                                                <div class="star-stroke">
+                                                    <div class="star-fill"></div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="commentMessage" id="commentMessage" class="form-control"></textarea>
+                                    </div>
+
+                                    <button class="btn btn-primary" id="createReview">Создать</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -229,6 +291,8 @@
 <script src="/static/custom-js/admin/delete-socMedia-of-employee.js"></script>
 <script src="/static/custom-js/admin/add-socMedia-to-employee.js"></script>
 <script src="/static/custom-js/general/check-notifications.js"></script>
+<script src="/static/custom-js/admin/create-review.js"></script>
+
 
 <!-- End custom js for this page-->
 </body>

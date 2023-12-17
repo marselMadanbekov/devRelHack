@@ -14,4 +14,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("SELECT DISTINCT e.skills FROM Employee e")
     List<String> findUniqueSkills();
+
+    @Query("SELECT e FROM Employee e WHERE EXISTS (SELECT s FROM e.skills s WHERE s IN :targetSkills)")
+    List<Employee> findEmployeesBySkillsIn(List<String> targetSkills);
 }
