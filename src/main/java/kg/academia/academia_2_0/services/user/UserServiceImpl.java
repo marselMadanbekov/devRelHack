@@ -7,8 +7,6 @@ import kg.academia.academia_2_0.model.enums.Level;
 import kg.academia.academia_2_0.model.enums.Role;
 import kg.academia.academia_2_0.model.updations.UserdataUpdate;
 import kg.academia.academia_2_0.services.email.EmailServiceImpl;
-import kg.academia.academia_2_0.services.notification.NotificationService;
-import kg.academia.academia_2_0.services.security.AccessGuardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.*;
@@ -27,16 +25,12 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserStorage userStorage;
     private final EmailServiceImpl emailService;
-    private final AccessGuardService accessGuardService;
-    private final NotificationService notificationService;
 
     @Autowired
-    public UserServiceImpl(PasswordEncoder passwordEncoder, UserStorage userStorage, EmailServiceImpl emailService, AccessGuardService accessGuardService, NotificationService notificationService) {
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserStorage userStorage, EmailServiceImpl emailService) {
         this.passwordEncoder = passwordEncoder;
         this.userStorage = userStorage;
         this.emailService = emailService;
-        this.accessGuardService = accessGuardService;
-        this.notificationService = notificationService;
     }
 
     @Override
@@ -140,6 +134,23 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Override
+    public Page<Employee> getEmployeesByPageAndFilters(Integer page, Integer level, String skill) {
+        if(level == -1){
+            if(skill.equals("0")){
+                return userStorage.getEmployeesByPage(page);
+            }else{
+                return userStorage.getEmployeesBySkillAndPage(skill,page);
+            }
+        }else {
+            if(skill.equals("0")){
+                return userStorage.getEmployeesByLevelAndPage(Level.values()[level],page);
+            }
+        }
+        return userStorage.getEmployeesByLevelAndSkillAndPage(Level.values()[level], skill, page);
+    }
+
 
     private void sendEmailByUsername(String message, String email) {
         emailService.sendSimpleMessage(email,message);

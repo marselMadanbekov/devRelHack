@@ -106,4 +106,14 @@ public class EventServiceImpl implements EventService {
         review.setAuthor(employee);
         reviewStorage.save(review);
     }
+
+    @Override
+    public void changeAttendanceStatusOfUser(Long eventId, Long userId) {
+        Event event = eventStorage.getById(eventId);
+        Employee employee = userStorage.getEmployeeById(userId);
+
+        event.changeStatusOfParticipant(employee);
+
+        eventStorage.save(event);
+    }
 }

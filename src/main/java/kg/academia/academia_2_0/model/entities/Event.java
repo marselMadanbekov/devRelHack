@@ -58,4 +58,8 @@ public class Event {
         }
         participantsAttendance.put(employee, false);
     }
+
+    public void changeStatusOfParticipant(Employee employee) {
+        this.participantsAttendance.put(employee, !this.participantsAttendance.get(employee));
+    }
 }

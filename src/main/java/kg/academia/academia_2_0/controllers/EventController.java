@@ -63,6 +63,20 @@ public class EventController {
         model.addAttribute("skills", skills);
         return "create-event";
     }
+
+    @PostMapping("/change-attendance")
+    public ResponseEntity<Map<String, String>> changeAttendance(@RequestParam Long eventId,
+                                                                @RequestParam Long userId) {
+        Map<String, String> response = new HashMap<>();
+        try{
+            eventService.changeAttendanceStatusOfUser(eventId, userId);
+            response.put("message", "Успешно изменен!");
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            response.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
     @PostMapping("/register")
     public ResponseEntity<Map<String,String>> registerToEvent(@RequestParam Long eventId){
         Map<String,String> response = new HashMap<>();

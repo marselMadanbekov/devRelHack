@@ -28,11 +28,17 @@ public class UserController {
 
     @GetMapping
     public String users(@RequestParam(defaultValue = "0") Integer page,
+                        @RequestParam(defaultValue = "-1") Integer level,
+                        @RequestParam(defaultValue = "0") String skill,
                         Model model) {
-        Page<Employee> employees = userService.getEmployeesByPage(page);
+        Page<Employee> employees = userService.getEmployeesByPageAndFilters(page, level, skill);
+        List<String> skills = userService.findUniqueSkills();
+        model.addAttribute("skills", skills);
         model.addAttribute("employees", employees);
         return "users";
     }
+
+
 
     @GetMapping("/user-details")
     public String userDetails(@RequestParam Long userId,
@@ -106,7 +112,7 @@ public class UserController {
     }
 
     @GetMapping("/mail-distribution")
-    public String mailDistribution(@RequestParam Long userId,Model model){
+    public String mailDistribution(@RequestParam Long userId, Model model) {
         Employee employee = userService.findEmployeeById(userId);
         model.addAttribute("employee", employee);
         return "mail-distribution";
@@ -118,7 +124,7 @@ public class UserController {
                                                                 @RequestParam List<String> targetDistributions) {
         Map<String, String> response = new HashMap<>();
         try {
-            userService.sendDistributionsByUser(userId, message,targetDistributions);
+            userService.sendDistributionsByUser(userId, message, targetDistributions);
             response.put("message", "Социальная сеть успешно удалена!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {

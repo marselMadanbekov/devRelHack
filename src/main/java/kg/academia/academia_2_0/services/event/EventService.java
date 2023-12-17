@@ -14,4 +14,6 @@ public interface EventService {
     void registerToEventCurrentUser(Long eventId);
 
     void createComment(Long eventId, String message, Integer grade);
+
+    void changeAttendanceStatusOfUser(Long eventId, Long userId);
 }

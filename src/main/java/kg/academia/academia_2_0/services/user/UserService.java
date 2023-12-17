@@ -28,4 +28,7 @@ public interface UserService {
     void deleteSocMedia(Long employeeId, String socMedia);
 
     void sendDistributionsByUser(Long userId, String message, List<String> targetDistributions);
+
+    Page<Employee> getEmployeesByPageAndFilters(Integer page,Integer level,String skill);
+
 }
